@@ -13,7 +13,7 @@ const mapRoutes = require('express-routes-mapper');
  * server configuration
  */
 const config = require('../config/');
-const auth = require('./policies/auth.policy');
+// const auth = require('./policies/auth.policy');
 const dbService = require('./services/db.service');
 const { schema } = require('./graphql');
 
@@ -47,7 +47,7 @@ api.use(bodyParser.json());
 api.use('/rest', mappedRoutes);
 
 // private GraphQL API
-api.post('/graphql', (req, res, next) => auth(req, res, next));
+// api.post('/graphql', (req, res, next) => auth(req, res, next));
 
 const graphQLServer = new ApolloServer({
   schema,

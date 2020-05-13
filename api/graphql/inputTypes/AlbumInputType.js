@@ -2,11 +2,12 @@ const {
   GraphQLInputObjectType,
   GraphQLNonNull,
   GraphQLString,
+  GraphQLBoolean,
   GraphQLID,
 } = require('graphql');
 
 
-const UserInputType = (type) => {
+const AlbumInputType = (type) => {
   let allGraphFields = {};
 
   switch (type) {
@@ -22,33 +23,21 @@ const UserInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-        username: {
-          type: GraphQLString,
-        },
-        email: {
-          type: GraphQLString,
-        },
         spotifyId: {
           type: GraphQLString,
+        },
+        isFeatured: {
+          type: GraphQLBoolean,
         },
       };
       break;
     case 'create':
       allGraphFields = {
-        username: {
-          type: GraphQLString,
-        },
-        email: {
-          type: GraphQLString,
-        },
         spotifyId: {
           type: GraphQLString,
         },
-        password: {
-          type: GraphQLString,
-        },
-        password2: {
-          type: GraphQLString,
+        isFeatured: {
+          type: GraphQLBoolean,
         },
       };
       break;
@@ -60,13 +49,13 @@ const UserInputType = (type) => {
       };
   }
 
-  const userInputType = new GraphQLInputObjectType({
-    name: `UserInputType${type[0].toUpperCase() + type.slice(1)}`,
-    description: 'This represents a UserInputType',
+  const albumInputType = new GraphQLInputObjectType({
+    name: `AlbumInputType${type[0].toUpperCase() + type.slice(1)}`,
+    description: 'This represents a AlbumInputType',
     fields: allGraphFields,
   });
 
-  return userInputType;
+  return albumInputType;
 };
 
-module.exports = { UserInputType };
+module.exports = { AlbumInputType };

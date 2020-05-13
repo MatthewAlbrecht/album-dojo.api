@@ -1,7 +1,7 @@
-const { noteQuery } = require('./NoteQuery');
+const { albumQuery } = require('./AlbumQuery');
 const { userQuery } = require('./UserQuery');
 
 module.exports = {
-  noteQuery,
+  albumQuery,
   userQuery,
 };

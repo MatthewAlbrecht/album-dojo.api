@@ -1,8 +1,9 @@
 const {
-  createNote,
-  updateNote,
-  deleteNote,
-} = require('./NoteMutation');
+  createAlbum,
+  updateAlbum,
+  deleteAlbum,
+} = require('./AlbumMutation');
+
 const {
   createUser,
   updateUser,
@@ -10,10 +11,10 @@ const {
 } = require('./UserMutation');
 
 module.exports = {
-  createNote,
-  updateNote,
-  deleteNote,
   createUser,
   updateUser,
   deleteUser,
+  createAlbum,
+  updateAlbum,
+  deleteAlbum,
 };

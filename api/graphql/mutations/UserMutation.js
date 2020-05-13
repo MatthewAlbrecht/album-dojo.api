@@ -4,6 +4,30 @@ const { UserType } = require('../types');
 const { User } = require('../../models');
 const { UserInputType } = require('../inputTypes');
 
+const createUser = {
+  type: UserType,
+  description: 'The mutation that allows you to create a existing User by Id',
+  args: {
+    user: {
+      name: 'user',
+      type: UserInputType('create'),
+    },
+  },
+  resolve: async (_, { user }) => {
+    if (user.password !== user.password2) {
+      throw new Error('Bad Request: Passwords don\'t match');
+    }
+
+    const createdUser = await User.create(user);
+
+    if (!createdUser) {
+      throw new Error('User could not be created!');
+    }
+
+    return createdUser;
+  },
+};
+
 const updateUser = {
   type: UserType,
   description: 'The mutation that allows you to update an existing User by Id',
@@ -23,6 +47,8 @@ const updateUser = {
     const updatedUser = merge(foundUser, {
       username: user.username,
       email: user.email,
+      spotifyId: user.spotifyId,
+      isFeatured: user.isFeatured,
     });
 
     return foundUser.update(updatedUser);
@@ -56,6 +82,7 @@ const deleteUser = {
 };
 
 module.exports = {
+  createUser,
   updateUser,
   deleteUser,
 };

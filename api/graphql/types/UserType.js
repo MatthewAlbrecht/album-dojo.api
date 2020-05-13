@@ -1,18 +1,22 @@
 const {
   GraphQLObjectType,
-  GraphQLInt,
+  GraphQLID,
   GraphQLString,
   GraphQLList,
 } = require('graphql');
 
-const { NoteType } = require('./NoteType');
+// const { UUIDV4 } = require('sequelize');
+
+
+const { AlbumType } = require('./AlbumType');
 
 const UserType = new GraphQLObjectType({
   name: 'User',
   description: 'This represents a User',
   fields: () => ({
     id: {
-      type: GraphQLInt,
+      type: GraphQLID,
+      // defaultValue: UUIDV4,
       resolve: (user) => user.id,
     },
     username: {
@@ -23,9 +27,17 @@ const UserType = new GraphQLObjectType({
       type: GraphQLString,
       resolve: (user) => user.email,
     },
-    notes: {
-      type: new GraphQLList(NoteType),
-      resolve: (user) => user.getNotes(),
+    firstName: {
+      type: GraphQLString,
+      resolve: (user) => user.firstName,
+    },
+    lastName: {
+      type: GraphQLString,
+      resolve: (user) => user.lastName,
+    },
+    albums: {
+      type: new GraphQLList(AlbumType),
+      resolve: (user) => user.getAlbums(),
     },
     createdAt: {
       type: GraphQLString,

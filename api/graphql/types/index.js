@@ -1,7 +1,7 @@
-const { NoteType } = require('./NoteType');
+const { AlbumType } = require('./AlbumType');
 const { UserType } = require('./UserType');
 
 module.exports = {
-  NoteType,
+  AlbumType,
   UserType,
 };
