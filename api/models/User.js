@@ -5,8 +5,6 @@ const sequelize = require('../../config/database');
 
 const hooks = {
   beforeCreate(user) {
-    console.log('WE MADE IT HERE', user);
-
     user.password = bcryptSevice().password(user); // eslint-disable-line no-param-reassign
   },
 };

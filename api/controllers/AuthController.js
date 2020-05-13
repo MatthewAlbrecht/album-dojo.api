@@ -20,6 +20,7 @@ const AuthController = () => {
 
         return res.status(200).json({ token, user });
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.log(err);
         return res.status(500).json({ msg: 'Internal server error' });
       }
@@ -51,6 +52,7 @@ const AuthController = () => {
 
         return res.status(401).json({ msg: 'Unauthorized' });
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.log(err);
         return res.status(500).json({ msg: 'Internal server error' });
       }
