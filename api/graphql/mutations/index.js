@@ -10,6 +10,12 @@ const {
   deleteUser,
 } = require('./UserMutation');
 
+const {
+  createUserAlbum,
+  updateUserAlbum,
+  deleteUserAlbum,
+} = require('./UserAlbumMutation');
+
 module.exports = {
   createUser,
   updateUser,
@@ -17,4 +23,7 @@ module.exports = {
   createAlbum,
   updateAlbum,
   deleteAlbum,
+  createUserAlbum,
+  updateUserAlbum,
+  deleteUserAlbum,
 };

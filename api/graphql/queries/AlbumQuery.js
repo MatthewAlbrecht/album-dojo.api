@@ -4,6 +4,7 @@ const {
   GraphQLBoolean,
   GraphQLList,
 } = require('graphql');
+const { GraphQLJSONObject } = require('graphql-type-json');
 
 const { AlbumType } = require('../types');
 const { Album } = require('../../models');
@@ -22,6 +23,10 @@ const albumQuery = {
     spotifyId: {
       name: 'spotifyId',
       type: GraphQLString,
+    },
+    spotifyData: {
+      name: 'spotifyData',
+      type: GraphQLJSONObject,
     },
     createdAt: {
       name: 'createdAt',

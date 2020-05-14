@@ -5,7 +5,7 @@ const {
   GraphQLBoolean,
   GraphQLID,
 } = require('graphql');
-
+const { GraphQLJSONObject } = require('graphql-type-json');
 
 const AlbumInputType = (type) => {
   let allGraphFields = {};
@@ -29,6 +29,9 @@ const AlbumInputType = (type) => {
         isFeatured: {
           type: GraphQLBoolean,
         },
+        spotifyData: {
+          type: GraphQLJSONObject,
+        },
       };
       break;
     case 'create':
@@ -38,6 +41,9 @@ const AlbumInputType = (type) => {
         },
         isFeatured: {
           type: GraphQLBoolean,
+        },
+        spotifyData: {
+          type: GraphQLJSONObject,
         },
       };
       break;

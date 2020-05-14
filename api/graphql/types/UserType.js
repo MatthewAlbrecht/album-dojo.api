@@ -5,10 +5,8 @@ const {
   GraphQLList,
 } = require('graphql');
 
-// const { UUIDV4 } = require('sequelize');
-
-
-const { AlbumType } = require('./AlbumType');
+const { UserAlbumType } = require('./UserAlbumType');
+const { UserAlbum } = require('../../models');
 
 const UserType = new GraphQLObjectType({
   name: 'User',
@@ -16,7 +14,6 @@ const UserType = new GraphQLObjectType({
   fields: () => ({
     id: {
       type: GraphQLID,
-      // defaultValue: UUIDV4,
       resolve: (user) => user.id,
     },
     username: {
@@ -36,8 +33,8 @@ const UserType = new GraphQLObjectType({
       resolve: (user) => user.lastName,
     },
     albums: {
-      type: new GraphQLList(AlbumType),
-      resolve: (user) => user.getAlbums(),
+      type: new GraphQLList(UserAlbumType),
+      resolve: async (user) => UserAlbum.findAll({ where: { userId: user.id } }),
     },
     createdAt: {
       type: GraphQLString,

@@ -44,6 +44,7 @@
     "express": "^4.16.4",
     "express-routes-mapper": "^1.1.0",
     "graphql": "^14.0.2",
+    "graphql-type-json": "^0.3.1",
     "helmet": "^3.15.0",
     "jsonwebtoken": "^8.4.0",
     "lodash.merge": "^4.6.1",

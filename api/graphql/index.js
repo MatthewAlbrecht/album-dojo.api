@@ -3,7 +3,12 @@ const {
   GraphQLObjectType,
 } = require('graphql');
 
-const { userQuery } = require('./queries');
+const {
+  userQuery,
+  albumQuery,
+  userAlbumQuery,
+} = require('./queries');
+
 const {
   createUser,
   updateUser,
@@ -11,8 +16,10 @@ const {
   createAlbum,
   updateAlbum,
   deleteAlbum,
+  createUserAlbum,
+  updateUserAlbum,
+  deleteUserAlbum,
 } = require('./mutations');
-const { albumQuery } = require('./queries');
 
 const RootQuery = new GraphQLObjectType({
   name: 'rootQuery',
@@ -20,6 +27,7 @@ const RootQuery = new GraphQLObjectType({
   fields: () => ({
     user: userQuery,
     album: albumQuery,
+    userAlbum: userAlbumQuery,
   }),
 });
 
@@ -33,6 +41,9 @@ const RootMutation = new GraphQLObjectType({
     createAlbum,
     updateAlbum,
     deleteAlbum,
+    createUserAlbum,
+    updateUserAlbum,
+    deleteUserAlbum,
   }),
 });
 
