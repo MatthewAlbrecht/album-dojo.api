@@ -1,9 +1,15 @@
+const { AchievementType } = require('./AchievementType');
 const { AlbumType } = require('./AlbumType');
-const { UserType } = require('./UserType');
+const { ActionType } = require('./ActionType');
+const { ListType } = require('./ListType');
 const { UserAlbumType } = require('./UserAlbumType');
+const { UserType } = require('./UserType');
 
 module.exports = {
+  AchievementType,
   AlbumType,
-  UserType,
+  ActionType,
+  ListType,
   UserAlbumType,
+  UserType,
 };

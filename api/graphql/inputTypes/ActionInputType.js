@@ -2,11 +2,11 @@ const {
   GraphQLInputObjectType,
   GraphQLNonNull,
   GraphQLString,
+  GraphQLInt,
   GraphQLID,
 } = require('graphql');
 
-
-const UserInputType = (type) => {
+const ActionInputType = (type) => {
   let allGraphFields = {};
 
   switch (type) {
@@ -22,39 +22,42 @@ const UserInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-        username: {
+        name: {
           type: GraphQLString,
         },
-        email: {
+        code: {
           type: GraphQLString,
         },
-        spotifyId: {
+        description: {
           type: GraphQLString,
         },
-        role: {
-          type: GraphQLString,
+        level: {
+          type: GraphQLInt,
+        },
+        points: {
+          type: GraphQLInt,
         },
       };
       break;
     case 'create':
       allGraphFields = {
-        username: {
+        name: {
           type: GraphQLString,
         },
-        email: {
+        code: {
           type: GraphQLString,
         },
-        role: {
+        description: {
           type: GraphQLString,
         },
-        spotifyId: {
+        imageUrl: {
           type: GraphQLString,
         },
-        password: {
-          type: GraphQLString,
+        level: {
+          type: GraphQLInt,
         },
-        password2: {
-          type: GraphQLString,
+        points: {
+          type: GraphQLInt,
         },
       };
       break;
@@ -66,13 +69,13 @@ const UserInputType = (type) => {
       };
   }
 
-  const userInputType = new GraphQLInputObjectType({
-    name: `UserInputType${type[0].toUpperCase() + type.slice(1)}`,
-    description: 'This represents a UserInputType',
+  const actionInputType = new GraphQLInputObjectType({
+    name: `ActionInputType${type[0].toUpperCase() + type.slice(1)}`,
+    description: 'This represents a ActionInputType',
     fields: allGraphFields,
   });
 
-  return userInputType;
+  return actionInputType;
 };
 
-module.exports = { UserInputType };
+module.exports = { ActionInputType };

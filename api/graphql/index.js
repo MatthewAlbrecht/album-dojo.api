@@ -4,9 +4,12 @@ const {
 } = require('graphql');
 
 const {
-  userQuery,
+  achievementQuery,
   albumQuery,
+  actionQuery,
+  listQuery,
   userAlbumQuery,
+  userQuery,
 } = require('./queries');
 
 const {
@@ -19,15 +22,28 @@ const {
   createUserAlbum,
   updateUserAlbum,
   deleteUserAlbum,
+  createAchievement,
+  updateAchievement,
+  deleteAchievement,
+  createAction,
+  updateAction,
+  deleteAction,
+  createList,
+  updateList,
+  deleteList,
+
 } = require('./mutations');
 
 const RootQuery = new GraphQLObjectType({
   name: 'rootQuery',
   description: 'This is the root query which holds all possible READ entrypoints for the GraphQL API',
   fields: () => ({
-    user: userQuery,
+    achievement: achievementQuery,
     album: albumQuery,
+    action: actionQuery,
+    list: listQuery,
     userAlbum: userAlbumQuery,
+    user: userQuery,
   }),
 });
 
@@ -44,6 +60,15 @@ const RootMutation = new GraphQLObjectType({
     createUserAlbum,
     updateUserAlbum,
     deleteUserAlbum,
+    createAchievement,
+    updateAchievement,
+    deleteAchievement,
+    createAction,
+    updateAction,
+    deleteAction,
+    createList,
+    updateList,
+    deleteList,
   }),
 });
 

@@ -1,10 +1,9 @@
 const Sequelize = require('sequelize');
-
 const sequelize = require('../../config/database');
 
-const tableName = 'badges';
+const tableName = 'roles';
 
-const Badge = sequelize.define('Badge', {
+const Role = sequelize.define('Role', {
   id: {
     type: Sequelize.UUID,
     primaryKey: true,
@@ -13,19 +12,12 @@ const Badge = sequelize.define('Badge', {
   },
   name: {
     type: Sequelize.STRING,
-  },
-  code: {
-    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false,
   },
   description: {
-    type: Sequelize.STRING(511),
-  },
-  imageUrl: {
     type: Sequelize.STRING,
-    validate: {
-      isUrl: true,
-    },
   },
 }, { tableName });
 
-module.exports = { Badge };
+module.exports = { Role };

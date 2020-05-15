@@ -30,6 +30,10 @@ const userQuery = {
       name: 'lastName',
       type: GraphQLString,
     },
+    role: {
+      name: 'role',
+      type: GraphQLString,
+    },
     spotifyId: {
       name: 'spotifyId',
       type: GraphQLString,

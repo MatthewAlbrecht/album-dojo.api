@@ -2,11 +2,11 @@ const {
   GraphQLInputObjectType,
   GraphQLNonNull,
   GraphQLString,
+  GraphQLInt,
   GraphQLID,
 } = require('graphql');
 
-
-const UserInputType = (type) => {
+const AchievementInputType = (type) => {
   let allGraphFields = {};
 
   switch (type) {
@@ -22,38 +22,38 @@ const UserInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-        username: {
+        name: {
           type: GraphQLString,
         },
-        email: {
+        code: {
           type: GraphQLString,
         },
-        spotifyId: {
+        description: {
           type: GraphQLString,
         },
-        role: {
+        level: {
+          type: GraphQLInt,
+        },
+        imageUrl: {
           type: GraphQLString,
         },
       };
       break;
     case 'create':
       allGraphFields = {
-        username: {
+        name: {
           type: GraphQLString,
         },
-        email: {
+        code: {
           type: GraphQLString,
         },
-        role: {
+        description: {
           type: GraphQLString,
         },
-        spotifyId: {
-          type: GraphQLString,
+        level: {
+          type: GraphQLInt,
         },
-        password: {
-          type: GraphQLString,
-        },
-        password2: {
+        imageUrl: {
           type: GraphQLString,
         },
       };
@@ -66,13 +66,13 @@ const UserInputType = (type) => {
       };
   }
 
-  const userInputType = new GraphQLInputObjectType({
-    name: `UserInputType${type[0].toUpperCase() + type.slice(1)}`,
-    description: 'This represents a UserInputType',
+  const achievementInputType = new GraphQLInputObjectType({
+    name: `AchievementInputType${type[0].toUpperCase() + type.slice(1)}`,
+    description: 'This represents a AchievementInputType',
     fields: allGraphFields,
   });
 
-  return userInputType;
+  return achievementInputType;
 };
 
-module.exports = { UserInputType };
+module.exports = { AchievementInputType };

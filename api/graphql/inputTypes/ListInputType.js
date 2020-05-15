@@ -2,11 +2,12 @@ const {
   GraphQLInputObjectType,
   GraphQLNonNull,
   GraphQLString,
+  GraphQLInt,
+  GraphQLBoolean,
   GraphQLID,
 } = require('graphql');
 
-
-const UserInputType = (type) => {
+const ListInputType = (type) => {
   let allGraphFields = {};
 
   switch (type) {
@@ -22,39 +23,39 @@ const UserInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-        username: {
+        userId: {
+          type: GraphQLID,
+        },
+        name: {
           type: GraphQLString,
         },
-        email: {
+        description: {
           type: GraphQLString,
         },
-        spotifyId: {
-          type: GraphQLString,
+        maxCount: {
+          type: GraphQLInt,
         },
-        role: {
-          type: GraphQLString,
+        createdFromTemplate: {
+          type: GraphQLBoolean,
         },
       };
       break;
     case 'create':
       allGraphFields = {
-        username: {
+        userId: {
+          type: GraphQLID,
+        },
+        name: {
           type: GraphQLString,
         },
-        email: {
+        description: {
           type: GraphQLString,
         },
-        role: {
-          type: GraphQLString,
+        maxCount: {
+          type: GraphQLInt,
         },
-        spotifyId: {
-          type: GraphQLString,
-        },
-        password: {
-          type: GraphQLString,
-        },
-        password2: {
-          type: GraphQLString,
+        createdFromTemplate: {
+          type: GraphQLBoolean,
         },
       };
       break;
@@ -66,13 +67,13 @@ const UserInputType = (type) => {
       };
   }
 
-  const userInputType = new GraphQLInputObjectType({
-    name: `UserInputType${type[0].toUpperCase() + type.slice(1)}`,
-    description: 'This represents a UserInputType',
+  const listInputType = new GraphQLInputObjectType({
+    name: `ListInputType${type[0].toUpperCase() + type.slice(1)}`,
+    description: 'This represents a ListInputType',
     fields: allGraphFields,
   });
 
-  return userInputType;
+  return listInputType;
 };
 
-module.exports = { UserInputType };
+module.exports = { ListInputType };

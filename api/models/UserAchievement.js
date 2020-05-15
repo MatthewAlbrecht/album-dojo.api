@@ -16,18 +16,18 @@ const UserAchievement = sequelize.define('UserAchievement', {
     defaultValue: Sequelize.UUIDV4,
     allowNull: false,
   },
+  achievementCode: {
+    type: Sequelize.STRING,
+    references: {
+      model: Achievement,
+      key: 'code',
+    },
+    allowNull: false,
+  },
   userId: {
     type: Sequelize.UUID,
     references: {
       model: User,
-      key: 'id',
-    },
-    allowNull: false,
-  },
-  achievementId: {
-    type: Sequelize.UUID,
-    references: {
-      model: Achievement,
       key: 'id',
     },
     allowNull: false,

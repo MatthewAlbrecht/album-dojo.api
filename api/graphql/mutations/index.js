@@ -16,6 +16,24 @@ const {
   deleteUserAlbum,
 } = require('./UserAlbumMutation');
 
+const {
+  createAchievement,
+  updateAchievement,
+  deleteAchievement,
+} = require('./AchievementMutation');
+
+const {
+  createAction,
+  updateAction,
+  deleteAction,
+} = require('./ActionMutation');
+
+const {
+  createList,
+  updateList,
+  deleteList,
+} = require('./ListMutation');
+
 module.exports = {
   createUser,
   updateUser,
@@ -26,4 +44,13 @@ module.exports = {
   createUserAlbum,
   updateUserAlbum,
   deleteUserAlbum,
+  createAchievement,
+  updateAchievement,
+  deleteAchievement,
+  createAction,
+  updateAction,
+  deleteAction,
+  createList,
+  updateList,
+  deleteList,
 };

@@ -3,13 +3,13 @@ const Sequelize = require('sequelize');
 const sequelize = require('../../config/database');
 
 const { User } = require('./User');
-const { Badge } = require('./Badge');
+const { Action } = require('./Action');
 const { List } = require('./List');
 const { UserAlbum } = require('./UserAlbum');
 
-const tableName = 'userBadge';
+const tableName = 'userActions';
 
-const UserBadge = sequelize.define('UserBadge', {
+const UserAction = sequelize.define('UserAction', {
   id: {
     type: Sequelize.UUID,
     primaryKey: true,
@@ -24,13 +24,20 @@ const UserBadge = sequelize.define('UserBadge', {
     },
     allowNull: false,
   },
-  badgeId: {
-    type: Sequelize.UUID,
+  actionCode: {
+    type: Sequelize.STRING,
     references: {
-      model: Badge,
-      key: 'id',
+      model: Action,
+      key: 'code',
     },
     allowNull: false,
+  },
+  achievementCode: {
+    type: Sequelize.STRING,
+    references: {
+      model: Action,
+      key: 'code',
+    },
   },
   listId: {
     type: Sequelize.UUID,
@@ -48,4 +55,4 @@ const UserBadge = sequelize.define('UserBadge', {
   },
 }, { tableName });
 
-module.exports = { UserBadge };
+module.exports = { UserAction };

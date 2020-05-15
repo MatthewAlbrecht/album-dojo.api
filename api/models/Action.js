@@ -2,16 +2,14 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../../config/database');
 
-const tableName = 'achievements';
+const tableName = 'actions';
 
-const Achievement = sequelize.define('Achievement', {
+const Action = sequelize.define('Action', {
   id: {
     type: Sequelize.UUID,
-    defaultValue: Sequelize.UUIDV4,
     primaryKey: true,
-  },
-  name: {
-    type: Sequelize.STRING,
+    defaultValue: Sequelize.UUIDV4,
+    allowNull: false,
   },
   code: {
     type: Sequelize.STRING,
@@ -21,18 +19,18 @@ const Achievement = sequelize.define('Achievement', {
       is: /[A-Z]{2}\d{3}/,
     },
   },
+  name: {
+    type: Sequelize.STRING,
+  },
   description: {
     type: Sequelize.STRING(511),
   },
   level: {
     type: Sequelize.INTEGER,
   },
-  imageUrl: {
-    type: Sequelize.STRING,
-    validate: {
-      isUrl: true,
-    },
+  points: {
+    type: Sequelize.INTEGER,
   },
 }, { tableName });
 
-module.exports = { Achievement };
+module.exports = { Action };

@@ -1,19 +1,25 @@
 const { User } = require('./User');
 const { Achievement } = require('./Achievement');
 const { Album } = require('./Album');
-const { Badge } = require('./Badge');
+const { Action } = require('./Action');
 const { List } = require('./List');
+const { Role } = require('./Role');
+const { Permission } = require('./Permission');
+const { RolePermission } = require('./RolePermission');
 const { ListUserAlbum } = require('./ListUserAlbum');
 const { UserAchievement } = require('./UserAchievement');
 const { UserAlbum } = require('./UserAlbum');
-const { UserBadge } = require('./UserBadge');
+const { UserAction } = require('./UserAction');
 
 User.belongsToMany(Achievement, { through: UserAchievement, foreignKey: { name: 'userId' } });
 Achievement.belongsToMany(User, { through: UserAchievement, foreignKey: { name: 'achievementId' } });
 User.belongsToMany(Album, { through: UserAlbum, foreignKey: { name: 'userId' } });
 Album.belongsToMany(User, { through: UserAlbum, foreignKey: { name: 'albumId' } });
-User.belongsToMany(Badge, { through: UserBadge, foreignKey: { name: 'userId' } });
-Badge.belongsToMany(User, { through: UserBadge, foreignKey: { name: 'badgeId' } });
+User.belongsToMany(Action, { through: UserAction, foreignKey: { name: 'userId' } });
+Role.hasMany(User, { foreignKey: 'role' });
+Permission.belongsToMany(Role, { through: RolePermission, foreignKey: { name: 'permissionName' } });
+Role.belongsToMany(Permission, { through: RolePermission, foreignKey: { name: 'roleName' } });
+Action.belongsToMany(User, { through: UserAction, foreignKey: { name: 'actionId' } });
 List.belongsToMany(UserAlbum, { through: ListUserAlbum, foreignKey: { name: 'listId' } });
 User.hasMany(List);
 UserAlbum.belongsToMany(List, { through: ListUserAlbum, foreignKey: { name: 'userAlbumId' } });
@@ -21,11 +27,14 @@ UserAlbum.belongsToMany(List, { through: ListUserAlbum, foreignKey: { name: 'use
 module.exports = {
   Achievement,
   Album,
-  Badge,
+  Action,
   List,
   ListUserAlbum,
+  Permission,
+  Role,
+  RolePermission,
   User,
   UserAchievement,
   UserAlbum,
-  UserBadge,
+  UserAction,
 };

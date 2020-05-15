@@ -2,6 +2,8 @@ const Sequelize = require('sequelize');
 const bcryptSevice = require('../services/bcrypt.service');
 
 const sequelize = require('../../config/database');
+const { Role } = require('./Role');
+const { ROLES } = require('../../utils/constants');
 
 const hooks = {
   beforeCreate(user) {
@@ -37,6 +39,14 @@ const User = sequelize.define('User', {
   },
   lastName: {
     type: Sequelize.STRING,
+  },
+  role: {
+    type: Sequelize.STRING,
+    references: {
+      model: Role,
+      key: 'name',
+    },
+    defaultValue: ROLES.USER,
   },
   spotifyId: {
     type: Sequelize.STRING,

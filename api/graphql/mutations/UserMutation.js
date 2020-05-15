@@ -49,6 +49,7 @@ const updateUser = {
       email: user.email,
       spotifyId: user.spotifyId,
       isFeatured: user.isFeatured,
+      role: user.role,
     });
 
     return foundUser.update(updatedUser);
