@@ -26,7 +26,10 @@ const environment = process.env.NODE_ENV;
 const api = express();
 const server = http.Server(api);
 const mappedRoutes = mapRoutes(config.publicRoutes, 'api/controllers/');
-const DB = dbService(environment, config.migrate).start();
+const DB = dbService(environment, config.migrate, {
+  alter: config.alter,
+  force: config.force,
+}).start();
 
 // allow cross origin requests
 // configure to allow only requests from certain origins

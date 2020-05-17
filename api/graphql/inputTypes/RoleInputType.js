@@ -2,8 +2,6 @@ const {
   GraphQLInputObjectType,
   GraphQLNonNull,
   GraphQLString,
-  GraphQLInt,
-  GraphQLBoolean,
   GraphQLID,
 } = require('graphql');
 
@@ -23,39 +21,21 @@ const RoleInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-        userId: {
-          type: GraphQLID,
-        },
         name: {
           type: GraphQLString,
         },
         description: {
           type: GraphQLString,
-        },
-        maxCount: {
-          type: GraphQLInt,
-        },
-        createdFromTemplate: {
-          type: GraphQLBoolean,
         },
       };
       break;
     case 'create':
       allGraphFields = {
-        userId: {
-          type: GraphQLID,
-        },
         name: {
           type: GraphQLString,
         },
         description: {
           type: GraphQLString,
-        },
-        maxCount: {
-          type: GraphQLInt,
-        },
-        createdFromTemplate: {
-          type: GraphQLBoolean,
         },
       };
       break;

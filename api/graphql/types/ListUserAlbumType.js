@@ -5,7 +5,7 @@ const {
   GraphQLInt,
   GraphQLID,
 } = require('graphql');
-const { UserAlbum } = require('../../models');
+const { UserAlbum, List } = require('../../models');
 
 const ListUserAlbumType = new GraphQLObjectType({
   name: 'ListUserAlbum',
@@ -18,6 +18,10 @@ const ListUserAlbumType = new GraphQLObjectType({
     listId: {
       type: GraphQLID,
       resolve: (listUserAlbum) => listUserAlbum.listId,
+    },
+    list: {
+      type: require('./ListType').ListType,
+      resolve: (listUserAlbum) => List.findByPk(listUserAlbum.listId),
     },
     userAlbumId: {
       type: GraphQLID,

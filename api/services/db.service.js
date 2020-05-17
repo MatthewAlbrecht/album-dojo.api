@@ -1,11 +1,11 @@
 const database = require('../../config/database');
 
-const dbService = (environment, migrate) => {
+const dbService = (environment, migrate, options) => {
   const authenticateDB = () => database.authenticate();
 
   const dropDB = () => database.drop();
 
-  const syncDB = () => database.sync();
+  const syncDB = (syncOptions) => database.sync(syncOptions);
 
   const successfulDBStart = () => (
     // eslint-disable-next-line no-console
@@ -25,7 +25,7 @@ const dbService = (environment, migrate) => {
 
   const startMigrateTrue = async () => {
     try {
-      await syncDB();
+      await syncDB(options);
       successfulDBStart();
     } catch (err) {
       errorDBStart(err);

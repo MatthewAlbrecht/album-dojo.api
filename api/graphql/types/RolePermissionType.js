@@ -23,15 +23,11 @@ const RolePermissionType = new GraphQLObjectType({
     },
     permission: {
       type: require('./PermissionType').PermissionType,
-      resolve: (rolePermission) => Permission.findOne({
-        where: { name: rolePermission.permissionName },
-      }),
+      resolve: (rolePermission) => Permission.findByPk(rolePermission.permissionName),
     },
     role: {
       type: require('./RoleType').RoleType,
-      resolve: (rolePermission) => Role.findOne({
-        where: { name: rolePermission.permissionName },
-      }),
+      resolve: (rolePermission) => Role.findByPk(rolePermission.roleName),
     },
     createdAt: {
       type: GraphQLString,

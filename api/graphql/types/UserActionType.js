@@ -45,7 +45,7 @@ const UserActionType = new GraphQLObjectType({
       resolve: (userAction) => userAction.userAlbumId,
     },
     action: {
-      type: require('./PermissionType').PermissionType,
+      type: require('./ActionType').ActionType,
       resolve: (userAction) => Action.findOne({
         where: { code: userAction.actionCode },
       }),
