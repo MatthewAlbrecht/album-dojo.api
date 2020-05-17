@@ -34,6 +34,39 @@ const {
   deleteList,
 } = require('./ListMutation');
 
+const {
+  createListUserAlbum,
+  updateListUserAlbum,
+  deleteListUserAlbum,
+} = require('./ListUserAlbumMutation');
+
+const {
+  createPermission,
+  updatePermission,
+  deletePermission,
+} = require('./PermissionMutation');
+
+const {
+  createRolePermission,
+  deleteRolePermission,
+} = require('./RolePermissionMutation');
+
+const {
+  createRole,
+  updateRole,
+  deleteRole,
+} = require('./RoleMutation');
+
+const {
+  createUserAchievement,
+  deleteUserAchievement,
+} = require('./UserAchievementMutation');
+
+const {
+  createUserAction,
+  deleteUserAction,
+} = require('./UserActionMutation');
+
 module.exports = {
   createUser,
   updateUser,
@@ -53,4 +86,19 @@ module.exports = {
   createList,
   updateList,
   deleteList,
+  createListUserAlbum,
+  updateListUserAlbum,
+  deleteListUserAlbum,
+  createPermission,
+  updatePermission,
+  deletePermission,
+  createRolePermission,
+  deleteRolePermission,
+  createRole,
+  updateRole,
+  deleteRole,
+  createUserAchievement,
+  deleteUserAchievement,
+  createUserAction,
+  deleteUserAction,
 };

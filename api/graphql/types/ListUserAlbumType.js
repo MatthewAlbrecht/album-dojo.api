@@ -19,6 +19,10 @@ const ListUserAlbumType = new GraphQLObjectType({
       type: GraphQLID,
       resolve: (listUserAlbum) => listUserAlbum.listId,
     },
+    userAlbumId: {
+      type: GraphQLID,
+      resolve: (listUserAlbum) => listUserAlbum.userAlbumId,
+    },
     userAlbum: {
       type: require('./UserAlbumType').UserAlbumType,
       resolve: (listUserAlbum) => UserAlbum.findByPk(listUserAlbum.userAlbumId),
