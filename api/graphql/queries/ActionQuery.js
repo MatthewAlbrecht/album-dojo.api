@@ -41,7 +41,7 @@ const actionQuery = {
     },
     updatedAt: {
       type: GraphQLString,
-      name: 'createdAt',
+      name: 'updatedAt',
     },
   },
   resolve: (action, args) => Action.findAll({ where: args }),

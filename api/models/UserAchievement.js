@@ -46,9 +46,6 @@ const UserAchievement = sequelize.define('UserAchievement', {
       key: 'id',
     },
   },
-  points: {
-    type: Sequelize.INTEGER,
-  },
 }, { tableName });
 
 module.exports = { UserAchievement };

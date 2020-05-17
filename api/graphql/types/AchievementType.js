@@ -39,7 +39,7 @@ const AchievementType = new GraphQLObjectType({
     },
     updatedAt: {
       type: GraphQLString,
-      resolve: (achievement) => achievement.createdAt,
+      resolve: (achievement) => achievement.updatedAt,
     },
   }),
 });

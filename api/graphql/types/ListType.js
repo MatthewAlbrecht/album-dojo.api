@@ -46,7 +46,7 @@ const ListType = new GraphQLObjectType({
     },
     updatedAt: {
       type: GraphQLString,
-      resolve: (list) => list.createdAt,
+      resolve: (list) => list.updatedAt,
     },
   }),
 });

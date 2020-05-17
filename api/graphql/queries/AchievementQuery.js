@@ -37,7 +37,7 @@ const achievementQuery = {
     },
     updatedAt: {
       type: GraphQLString,
-      name: 'createdAt',
+      name: 'updatedAt',
     },
   },
   resolve: (achievement, args) => Achievement.findAll({ where: args }),

@@ -23,14 +23,6 @@ const userAlbumQuery = {
       name: 'albumId',
       type: GraphQLID,
     },
-    // user: {
-    //   type: UserType,
-    //   resolve: (userAlbum) => userAlbum.getUser(),
-    // },
-    // album: {
-    //   type: AlbumType,
-    //   resolve: (userAlbum) => userAlbum.getAlbum(),
-    // },
     rating: {
       name: 'rating',
       type: GraphQLInt,

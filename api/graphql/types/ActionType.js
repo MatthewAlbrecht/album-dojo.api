@@ -39,7 +39,7 @@ const ActionType = new GraphQLObjectType({
     },
     updatedAt: {
       type: GraphQLString,
-      resolve: (action) => action.createdAt,
+      resolve: (action) => action.updatedAt,
     },
   }),
 });

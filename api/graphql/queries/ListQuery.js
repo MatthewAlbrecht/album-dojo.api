@@ -42,7 +42,7 @@ const listQuery = {
     },
     updatedAt: {
       type: GraphQLString,
-      name: 'createdAt',
+      name: 'updatedAt',
     },
   },
   resolve: (list, args) => List.findAll({ where: args }),

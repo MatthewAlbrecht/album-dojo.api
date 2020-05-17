@@ -32,7 +32,7 @@ const AlbumType = new GraphQLObjectType({
     },
     updatedAt: {
       type: GraphQLString,
-      resolve: (album) => album.createdAt,
+      resolve: (album) => album.updatedAt,
     },
   }),
 });
