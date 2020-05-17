@@ -7,7 +7,7 @@ const {
   GraphQLID,
 } = require('graphql');
 
-const ListInputType = (type) => {
+const RoleInputType = (type) => {
   let allGraphFields = {};
 
   switch (type) {
@@ -67,13 +67,13 @@ const ListInputType = (type) => {
       };
   }
 
-  const listInputType = new GraphQLInputObjectType({
-    name: `ListInputType${type[0].toUpperCase() + type.slice(1)}`,
-    description: 'This represents a ListInputType',
+  const roleInputType = new GraphQLInputObjectType({
+    name: `RoleInputType${type[0].toUpperCase() + type.slice(1)}`,
+    description: 'This represents a RoleInputType',
     fields: allGraphFields,
   });
 
-  return listInputType;
+  return roleInputType;
 };
 
-module.exports = { ListInputType };
+module.exports = { RoleInputType };
