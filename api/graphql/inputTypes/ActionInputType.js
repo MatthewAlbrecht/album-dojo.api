@@ -3,7 +3,6 @@ const {
   GraphQLNonNull,
   GraphQLString,
   GraphQLInt,
-  GraphQLID,
 } = require('graphql');
 
 const ActionInputType = (type) => {
@@ -12,20 +11,17 @@ const ActionInputType = (type) => {
   switch (type) {
     case 'delete':
       allGraphFields = {
-        id: {
-          type: new GraphQLNonNull(GraphQLID),
+        code: {
+          type: new GraphQLNonNull(GraphQLString),
         },
       };
       break;
     case 'update':
       allGraphFields = {
-        id: {
-          type: new GraphQLNonNull(GraphQLID),
+        code: {
+          type: new GraphQLNonNull(GraphQLString),
         },
         name: {
-          type: GraphQLString,
-        },
-        code: {
           type: GraphQLString,
         },
         description: {
@@ -41,10 +37,10 @@ const ActionInputType = (type) => {
       break;
     case 'create':
       allGraphFields = {
-        name: {
+        code: {
           type: GraphQLString,
         },
-        code: {
+        name: {
           type: GraphQLString,
         },
         description: {
@@ -63,8 +59,8 @@ const ActionInputType = (type) => {
       break;
     default:
       allGraphFields = {
-        id: {
-          type: new GraphQLNonNull(GraphQLID),
+        code: {
+          type: new GraphQLNonNull(GraphQLString),
         },
       };
   }

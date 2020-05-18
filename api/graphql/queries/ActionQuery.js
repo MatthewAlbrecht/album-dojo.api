@@ -1,5 +1,4 @@
 const {
-  GraphQLID,
   GraphQLString,
   GraphQLInt,
   GraphQLList,
@@ -11,10 +10,6 @@ const { Action } = require('../../models');
 const actionQuery = {
   type: new GraphQLList(ActionType),
   args: {
-    id: {
-      type: GraphQLID,
-      name: 'id',
-    },
     name: {
       type: GraphQLString,
       name: 'name',

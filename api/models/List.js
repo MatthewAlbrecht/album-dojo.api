@@ -2,8 +2,6 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../../config/database');
 
-const { User } = require('./User');
-
 const tableName = 'lists';
 
 const List = sequelize.define('List', {
@@ -13,14 +11,14 @@ const List = sequelize.define('List', {
     defaultValue: Sequelize.UUIDV4,
     allowNull: false,
   },
-  userId: {
-    type: Sequelize.UUID,
-    references: {
-      model: User,
-      key: 'id',
-    },
-    allowNull: false,
-  },
+  // userId: {
+  //   type: Sequelize.UUID,
+  //   references: {
+  //     model: User,
+  //     key: 'id',
+  //   },
+  //   allowNull: false,
+  // },
   name: {
     type: Sequelize.STRING,
   },

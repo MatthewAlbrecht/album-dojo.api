@@ -4,11 +4,15 @@ const {
   GraphQLString,
   GraphQLList,
 } = require('graphql');
+const { Op } = require('sequelize');
 const { GraphQLJSONObject } = require('graphql-type-json');
-
 const { UserAlbumType } = require('./UserAlbumType');
 const { ListType } = require('./ListType');
-const { UserAlbum, List } = require('../../models');
+const {
+  UserAlbum,
+  List,
+  Level,
+} = require('../../models');
 
 const UserType = new GraphQLObjectType({
   name: 'User',
@@ -48,11 +52,26 @@ const UserType = new GraphQLObjectType({
     },
     points: {
       type: GraphQLJSONObject,
-      resolve: async () => ({
-        totalPoints: 550,
-        currentLevel: 17,
-        nextLevelPointsMin: 700,
-      }),
+      resolve: async (user) => {
+        const userActions = await user.getActions();
+        const totalUserPoints = userActions.reduce((total, action) => total + action.points, 0);
+        const currentLevel = await Level.findOne({
+          where: {
+            points: {
+              [Op.gt]: totalUserPoints,
+            },
+          },
+          order: [
+            ['points', 'ASC'],
+          ],
+        });
+
+        return {
+          totalUserPoints,
+          currentLevel: currentLevel.level,
+          pointsToNextLevel: currentLevel.points - totalUserPoints,
+        };
+      },
     },
     createdAt: {
       type: GraphQLString,

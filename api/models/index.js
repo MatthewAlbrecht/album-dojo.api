@@ -12,20 +12,44 @@ const { UserAchievement } = require('./UserAchievement');
 const { UserAlbum } = require('./UserAlbum');
 const { UserAction } = require('./UserAction');
 
+// User.associate = (models) => {
 User.belongsToMany(Achievement, { through: UserAchievement, foreignKey: { name: 'userId' } });
-Achievement.belongsToMany(User, { through: UserAchievement, foreignKey: { name: 'achievementCode' } });
+User.hasMany(List, { foreignKey: { name: 'userId' } });
 User.belongsToMany(Album, { through: UserAlbum, foreignKey: { name: 'userId' } });
-Album.belongsToMany(User, { through: UserAlbum, foreignKey: { name: 'albumId' } });
 User.belongsToMany(Action, { through: UserAction, foreignKey: { name: 'userId' } });
-Role.hasMany(User, { foreignKey: 'role' });
-Permission.belongsToMany(Role, { through: RolePermission, foreignKey: { name: 'permissionName' } });
-Role.belongsToMany(Permission, { through: RolePermission, foreignKey: { name: 'roleName' } });
-Action.belongsToMany(User, { through: UserAction, foreignKey: { name: 'actionCode' } });
-List.belongsToMany(UserAlbum, { through: ListUserAlbum, foreignKey: { name: 'listId' } });
-User.hasMany(List);
-UserAlbum.belongsToMany(List, { through: ListUserAlbum, foreignKey: { name: 'userAlbumId' } });
+// };
 
-module.exports = {
+// Role.associate = (models) => {
+Role.hasMany(User, { foreignKey: 'role' });
+Role.belongsToMany(Permission, { through: RolePermission, foreignKey: { name: 'roleName' } });
+// };
+
+
+// Action.associate = (models) => {
+Action.belongsToMany(User, { through: UserAction, foreignKey: { name: 'actionCode' } });
+// };
+
+// Achievement.associate = (models) => {
+Achievement.belongsToMany(User, { through: UserAchievement, foreignKey: { name: 'achievementCode' } });
+// };
+
+// Album.associate = (models) => {
+Album.belongsToMany(User, { through: UserAlbum, foreignKey: { name: 'albumId' } });
+// };
+
+// List.associate = (models) => {
+List.belongsToMany(UserAlbum, { through: ListUserAlbum, foreignKey: { name: 'listId' } });
+// };
+
+// Permission.associate = (models) => {
+Permission.belongsToMany(Role, { through: RolePermission, foreignKey: { name: 'permissionName' } });
+// };
+
+// UserAlbum.associate = (models) => {
+UserAlbum.belongsToMany(List, { through: ListUserAlbum, foreignKey: { name: 'userAlbumId' } });
+// };
+
+const Models = {
   Achievement,
   Album,
   Action,
@@ -40,3 +64,12 @@ module.exports = {
   UserAlbum,
   UserAction,
 };
+
+// Object.keys(Models).forEach((key) => {
+//   if ('associate' in Models[key]) {
+//     Models[key].associate(Models);
+//   }
+// });
+
+
+module.exports = Models;

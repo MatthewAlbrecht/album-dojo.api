@@ -3,6 +3,7 @@ const {
   GraphQLNonNull,
   GraphQLString,
   GraphQLID,
+  GraphQLFloat,
   GraphQLList,
 } = require('graphql');
 
@@ -43,7 +44,7 @@ const UserAlbumInputType = (type) => {
           type: GraphQLID,
         },
         rating: {
-          type: GraphQLID,
+          type: GraphQLFloat,
         },
         listenDate: {
           type: GraphQLString,

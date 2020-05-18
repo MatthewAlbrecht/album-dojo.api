@@ -31,7 +31,7 @@ const UserAlbum = sequelize.define('UserAlbum', {
     allowNull: false,
   },
   rating: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.REAL(2, 1),
   },
   listenDate: {
     type: Sequelize.DATEONLY,

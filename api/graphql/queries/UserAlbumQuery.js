@@ -1,7 +1,7 @@
 const {
   GraphQLID,
   GraphQLString,
-  GraphQLInt,
+  GraphQLFloat,
   GraphQLList,
 } = require('graphql');
 
@@ -25,7 +25,7 @@ const userAlbumQuery = {
     },
     rating: {
       name: 'rating',
-      type: GraphQLInt,
+      type: GraphQLFloat,
     },
     listenDate: {
       name: 'listenDate',

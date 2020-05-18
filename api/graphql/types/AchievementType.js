@@ -2,17 +2,12 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
-  GraphQLID,
 } = require('graphql');
 
 const AchievementType = new GraphQLObjectType({
   name: 'Achievement',
   description: 'This represents an Achievement',
   fields: () => ({
-    id: {
-      type: GraphQLID,
-      resolve: (achievement) => achievement.id,
-    },
     name: {
       type: GraphQLString,
       resolve: (achievement) => achievement.name,

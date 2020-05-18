@@ -3,7 +3,7 @@ const {
   GraphQLObjectType,
   GraphQLID,
   GraphQLString,
-  GraphQLInt,
+  GraphQLFloat,
   GraphQLList,
 } = require('graphql');
 
@@ -35,7 +35,7 @@ const UserAlbumType = new GraphQLObjectType({
       resolve: (userAlbum) => Album.findByPk(userAlbum.albumId),
     },
     rating: {
-      type: GraphQLInt,
+      type: GraphQLFloat,
       resolve: (userAlbum) => userAlbum.rating,
     },
     listenDate: {

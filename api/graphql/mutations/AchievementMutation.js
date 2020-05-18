@@ -34,10 +34,10 @@ const updateAchievement = {
     },
   },
   resolve: async (_, achievement) => {
-    const foundAchievement = await Achievement.findByPk(achievement.id);
+    const foundAchievement = await Achievement.findByPk(achievement.code);
 
     if (!foundAchievement) {
-      throw new Error(`Achievement with id: ${achievement.id} not found!`);
+      throw new Error(`Achievement with code: ${achievement.code} not found!`);
     }
 
     const updatedAchievement = merge(foundAchievement, {
@@ -60,16 +60,16 @@ const deleteAchievement = {
       type: AchievementInputType('delete'),
     },
   },
-  resolve: async (value, { id }) => {
-    const foundAchievement = await Achievement.findByPk(id);
+  resolve: async (value, { code }) => {
+    const foundAchievement = await Achievement.findByPk(code);
 
     if (!foundAchievement) {
-      throw new Error(`Achievement with id: ${id} not found!`);
+      throw new Error(`Achievement with code: ${code} not found!`);
     }
 
     await Achievement.destroy({
       where: {
-        id,
+        code,
       },
     });
 

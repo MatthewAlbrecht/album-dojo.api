@@ -34,10 +34,10 @@ const updateAction = {
     },
   },
   resolve: async (_, action) => {
-    const foundAction = await Action.findByPk(action.id);
+    const foundAction = await Action.findByPk(action.code);
 
     if (!foundAction) {
-      throw new Error(`Action with id: ${action.id} not found!`);
+      throw new Error(`Action with code: ${action.code} not found!`);
     }
 
     const updatedAction = merge(foundAction, {
@@ -61,16 +61,16 @@ const deleteAction = {
       type: ActionInputType('delete'),
     },
   },
-  resolve: async (value, { id }) => {
-    const foundAction = await Action.findByPk(id);
+  resolve: async (value, { code }) => {
+    const foundAction = await Action.findByPk(code);
 
     if (!foundAction) {
-      throw new Error(`Action with id: ${id} not found!`);
+      throw new Error(`Action with code: ${code} not found!`);
     }
 
     await Action.destroy({
       where: {
-        id,
+        code,
       },
     });
 

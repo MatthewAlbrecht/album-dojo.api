@@ -1,5 +1,4 @@
 const {
-  GraphQLID,
   GraphQLString,
   GraphQLInt,
   GraphQLList,
@@ -11,10 +10,6 @@ const { Achievement } = require('../../models');
 const achievementQuery = {
   type: new GraphQLList(AchievementType),
   args: {
-    id: {
-      type: GraphQLID,
-      name: 'id',
-    },
     name: {
       type: GraphQLString,
       name: 'name',
