@@ -1,0 +1,18 @@
+[
+  {
+    "rating": 9.5,
+    "tags": ["Hip-Hop", "Alt Hip-Hop"]
+  },
+  {
+    "rating": 10,
+    "tags": ["Hip-Hop", "RnB"]
+  },
+  {
+    "rating": 9.2,
+    "tags": ["Hip-Hop", "Psychadelic"]
+  },
+  {
+    "rating": 10,
+    "tags": ["RnB"]
+  }
+]

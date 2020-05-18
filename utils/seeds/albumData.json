@@ -1,0 +1,58 @@
+[
+  {
+    "spotifyId": "fakespotifyid1",
+    "isFeatured": true,
+    "spotifyData": {
+      "albumName": "IGOR",
+      "artistName": "Tyler, the Creator",
+      "tracks": [
+        "Track 1",
+        "Track 2",
+        "Track 3",
+        "Track 4"
+      ]
+    }
+  },
+  {
+    "spotifyId": "fakespotifyid2",
+    "isFeatured": false,
+    "spotifyData": {
+      "albumName": "Flower Boy",
+      "artistName": "Tyler, the Creator",
+      "tracks": [
+        "Track 1",
+        "Track 2",
+        "Track 3",
+        "Track 4"
+      ]
+    }
+  },
+  {
+    "spotifyId": "fakespotifyid3",
+    "isFeatured": false,
+    "spotifyData": {
+      "albumName": "Kids See Ghosts",
+      "artistName": "Kids See Ghosts",
+      "tracks": [
+        "Track 1",
+        "Track 2",
+        "Track 3",
+        "Track 4"
+      ]
+    }
+  },
+  {
+    "spotifyId": "fakespotifyid4",
+    "isFeatured": true,
+    "spotifyData": {
+      "albumName": "Freudian",
+      "artistName": "Daniel Caesar",
+      "tracks": [
+        "Track 1",
+        "Track 2",
+        "Track 3",
+        "Track 4"
+      ]
+    }
+  }
+]

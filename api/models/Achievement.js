@@ -5,21 +5,16 @@ const sequelize = require('../../config/database');
 const tableName = 'achievements';
 
 const Achievement = sequelize.define('Achievement', {
-  id: {
-    type: Sequelize.UUID,
-    defaultValue: Sequelize.UUIDV4,
-    primaryKey: true,
-  },
-  name: {
-    type: Sequelize.STRING,
-  },
   code: {
     type: Sequelize.STRING,
-    unique: true,
+    primaryKey: true,
     allowNull: false,
     validate: {
       is: /[A-Z]{2}\d{3}/,
     },
+  },
+  name: {
+    type: Sequelize.STRING,
   },
   description: {
     type: Sequelize.STRING(511),

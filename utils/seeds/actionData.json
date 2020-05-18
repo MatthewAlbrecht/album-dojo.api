@@ -1,0 +1,453 @@
+[
+  {
+    "name": "Add Album",
+    "code": "AL001",
+    "description": "User added an album",
+    "level": 1,
+    "points": 10
+  },
+  {
+    "name": "Add Album Streak 2",
+    "code": "AL002",
+    "description": "User added an album 2 days in a row",
+    "level": 2,
+    "points": 20
+  },
+  {
+    "name": "Add Album Streak 3",
+    "code": "AL003",
+    "description": "User added an album 3 days in a row",
+    "level": 3,
+    "points": 30
+  },
+  {
+    "name": "Add Album Streak 4",
+    "code": "AL004",
+    "description": "User added an album 4 days in a row",
+    "level": 4,
+    "points": 40
+  },
+  {
+    "name": "Add Album Streak 5+",
+    "code": "AL005",
+    "description": "User added an album 5 or more days in a row",
+    "level": 5,
+    "points": 60
+  },
+  {
+    "name": "Add Featured Album",
+    "code": "FA001",
+    "description": "User added a featured album",
+    "level": 1,
+    "points": 25
+  },
+  {
+    "name": "Add Featured Album Streak 2",
+    "code": "FA002",
+    "description": "User added a featured album 2 days in a row",
+    "level": 2,
+    "points": 50
+  },
+  {
+    "name": "Add Featured Album Streak 3",
+    "code": "FA003",
+    "description": "User added a featured album 3 days in a row",
+    "level": 3,
+    "points": 75
+  },
+  {
+    "name": "Add Featured Album Streak 4",
+    "code": "FA004",
+    "description": "User added a featured album 4 days in a row",
+    "level": 4,
+    "points": 100
+  },
+  {
+    "name": "Add Featured Album Streak 5+",
+    "code": "FA005",
+    "description": "User added a featured album 5 or more days in a row",
+    "level": 5,
+    "points": 150
+  },
+  {
+    "name": "Add List",
+    "code": "LI001",
+    "description": "User added a list",
+    "level": 1,
+    "points": 100
+  },
+  {
+    "name": "Add Featured List",
+    "code": "FL001",
+    "description": "User added a featured list",
+    "level": 1,
+    "points": 250
+  },
+  {
+    "name": "Connect Spotify Account",
+    "code": "SP001",
+    "description": "User connected their Spotify Account",
+    "level": 1,
+    "points": 500
+  },
+  {
+    "name": "Unlocked YR001 Achievement",
+    "code": "AC001",
+    "description": "Unlocked YR001 Achievement",
+    "level": 1,
+    "points": 1200,
+    "achievementCode": "YR001"
+  },
+  {
+    "name": "Unlocked YR002 Achievement",
+    "code": "AC002",
+    "description": "Unlocked YR002 Achievement",
+    "level": 2,
+    "points": 1600,
+    "achievementCode": "YR002"
+  },
+  {
+    "name": "Unlocked YR003 Achievement",
+    "code": "AC003",
+    "description": "Unlocked YR003 Achievement",
+    "level": 3,
+    "points": 2000,
+    "achievementCode": "YR003"
+  },
+  {
+    "name": "Unlocked YR004 Achievement",
+    "code": "AC004",
+    "description": "Unlocked YR004 Achievement",
+    "level": 4,
+    "points": 2400,
+    "achievementCode": "YR004"
+  },
+  {
+    "name": "Unlocked YR005 Achievement",
+    "code": "AC005",
+    "description": "Unlocked YR005 Achievement",
+    "level": 5,
+    "points": 2800,
+    "achievementCode": "YR005"
+  },
+  {
+    "name": "Unlocked AL001 Achievement",
+    "code": "AC101",
+    "description": "Unlocked AL001 Achievement",
+    "level": 1,
+    "points": 100,
+    "achievementCode": "AL001"
+  },
+  {
+    "name": "Unlocked AL002 Achievement",
+    "code": "AC102",
+    "description": "Unlocked AL002 Achievement",
+    "level": 2,
+    "points": 100,
+    "achievementCode": "AL002"
+  },
+  {
+    "name": "Unlocked AL003 Achievement",
+    "code": "AC103",
+    "description": "Unlocked AL003 Achievement",
+    "level": 3,
+    "points": 100,
+    "achievementCode": "AL003"
+  },
+  {
+    "name": "Unlocked AL004 Achievement",
+    "code": "AC104",
+    "description": "Unlocked AL004 Achievement",
+    "level": 4,
+    "points": 250,
+    "achievementCode": "AL004"
+  },
+  {
+    "name": "Unlocked AL005 Achievement",
+    "code": "AC105",
+    "description": "Unlocked AL005 Achievement",
+    "level": 5,
+    "points": 250,
+    "achievementCode": "AL005"
+  },
+  {
+    "name": "Unlocked AL006 Achievement",
+    "code": "AC106",
+    "description": "Unlocked AL006 Achievement",
+    "level": 6,
+    "points": 250,
+    "achievementCode": "AL006"
+  },
+  {
+    "name": "Unlocked AL007 Achievement",
+    "code": "AC107",
+    "description": "Unlocked AL007 Achievement",
+    "level": 7,
+    "points": 500,
+    "achievementCode": "AL007"
+  },
+  {
+    "name": "Unlocked AL008 Achievement",
+    "code": "AC108",
+    "description": "Unlocked AL008 Achievement",
+    "level": 8,
+    "points": 500,
+    "achievementCode": "AL008"
+  },
+  {
+    "name": "Unlocked AL009 Achievement",
+    "code": "AC109",
+    "description": "Unlocked AL009 Achievement",
+    "level": 9,
+    "points": 500,
+    "achievementCode": "AL009"
+  },
+  {
+    "name": "Unlocked AL010 Achievement",
+    "code": "AC110",
+    "description": "Unlocked AL010 Achievement",
+    "level": 10,
+    "points": 1000,
+    "achievementCode": "AL010"
+  },
+  {
+    "name": "Unlocked AL011 Achievement",
+    "code": "AC111",
+    "description": "Unlocked AL011 Achievement",
+    "level": 11,
+    "points": 1000,
+    "achievementCode": "AL011"
+  },
+  {
+    "name": "Unlocked AL012 Achievement",
+    "code": "AC112",
+    "description": "Unlocked AL012 Achievement",
+    "level": 12,
+    "points": 1000,
+    "achievementCode": "AL012"
+  },
+  {
+    "name": "Unlocked AL013 Achievement",
+    "code": "AC113",
+    "description": "Unlocked AL013 Achievement",
+    "level": 13,
+    "points": 1250,
+    "achievementCode": "AL013"
+  },
+  {
+    "name": "Unlocked AL014 Achievement",
+    "code": "AC114",
+    "description": "Unlocked AL014 Achievement",
+    "level": 14,
+    "points": 1250,
+    "achievementCode": "AL014"
+  },
+  {
+    "name": "Unlocked AL015 Achievement",
+    "code": "AC115",
+    "description": "Unlocked AL015 Achievement",
+    "level": 15,
+    "points": 1250,
+    "achievementCode": "AL015"
+  },
+  {
+    "name": "Unlocked AL016 Achievement",
+    "code": "AC116",
+    "description": "Unlocked AL016 Achievement",
+    "level": 16,
+    "points": 1500,
+    "achievementCode": "AL016"
+  },
+  {
+    "name": "Unlocked AL017 Achievement",
+    "code": "AC117",
+    "description": "Unlocked AL017 Achievement",
+    "level": 17,
+    "points": 1500,
+    "achievementCode": "AL017"
+  },
+  {
+    "name": "Unlocked AL018 Achievement",
+    "code": "AC118",
+    "description": "Unlocked AL018 Achievement",
+    "level": 18,
+    "points": 1500,
+    "achievementCode": "AL018"
+  },
+  {
+    "name": "Unlocked AL019 Achievement",
+    "code": "AC119",
+    "description": "Unlocked AL019 Achievement",
+    "level": 19,
+    "points": 2000,
+    "achievementCode": "AL019"
+  },
+  {
+    "name": "Unlocked AL020 Achievement",
+    "code": "AC120",
+    "description": "Unlocked AL020 Achievement",
+    "level": 20,
+    "points": 2000,
+    "achievementCode": "AL020"
+  },
+  {
+    "name": "Unlocked AL021 Achievement",
+    "code": "AC121",
+    "description": "Unlocked AL021 Achievement",
+    "level": 21,
+    "points": 2000,
+    "achievementCode": "AL021"
+  },
+  {
+    "name": "Unlocked LI001 Achievement",
+    "code": "AC201",
+    "description": "Unlocked LI001 Achievement",
+    "level": 1,
+    "points": 250,
+    "achievementCode": "LI001"
+  },
+  {
+    "name": "Unlocked LI002 Achievement",
+    "code": "AC202",
+    "description": "Unlocked LI002 Achievement",
+    "level": 2,
+    "points": 250,
+    "achievementCode": "LI002"
+  },
+  {
+    "name": "Unlocked LI003 Achievement",
+    "code": "AC203",
+    "description": "Unlocked LI003 Achievement",
+    "level": 3,
+    "points": 250,
+    "achievementCode": "LI003"
+  },
+  {
+    "name": "Unlocked LI004 Achievement",
+    "code": "AC204",
+    "description": "Unlocked LI004 Achievement",
+    "level": 4,
+    "points": 500,
+    "achievementCode": "LI004"
+  },
+  {
+    "name": "Unlocked LI005 Achievement",
+    "code": "AC205",
+    "description": "Unlocked LI005 Achievement",
+    "level": 5,
+    "points": 500,
+    "achievementCode": "LI005"
+  },
+  {
+    "name": "Unlocked LI006 Achievement",
+    "code": "AC206",
+    "description": "Unlocked LI006 Achievement",
+    "level": 6,
+    "points": 500,
+    "achievementCode": "LI006"
+  },
+  {
+    "name": "Unlocked LI007 Achievement",
+    "code": "AC207",
+    "description": "Unlocked LI007 Achievement",
+    "level": 7,
+    "points": 500,
+    "achievementCode": "LI007"
+  },
+  {
+    "name": "Unlocked LI008 Achievement",
+    "code": "AC208",
+    "description": "Unlocked LI008 Achievement",
+    "level": 8,
+    "points": 500,
+    "achievementCode": "LI008"
+  },
+  {
+    "name": "Unlocked LI009 Achievement",
+    "code": "AC209",
+    "description": "Unlocked LI009 Achievement",
+    "level": 9,
+    "points": 500,
+    "achievementCode": "LI009"
+  },
+  {
+    "name": "Unlocked LI010 Achievement",
+    "code": "AC210",
+    "description": "Unlocked LI010 Achievement",
+    "level": 10,
+    "points": 1000,
+    "achievementCode": "LI010"
+  },
+  {
+    "name": "Unlocked LI011 Achievement",
+    "code": "AC211",
+    "description": "Unlocked LI011 Achievement",
+    "level": 11,
+    "points": 1000,
+    "achievementCode": "LI011"
+  },
+  {
+    "name": "Unlocked LI012 Achievement",
+    "code": "AC212",
+    "description": "Unlocked LI012 Achievement",
+    "level": 12,
+    "points": 1000,
+    "achievementCode": "LI012"
+  },
+  {
+    "name": "Unlocked LI013 Achievement",
+    "code": "AC213",
+    "description": "Unlocked LI013 Achievement",
+    "level": 13,
+    "points": 1250,
+    "achievementCode": "LI013"
+  },
+  {
+    "name": "Unlocked LI014 Achievement",
+    "code": "AC214",
+    "description": "Unlocked LI014 Achievement",
+    "level": 14,
+    "points": 1250,
+    "achievementCode": "LI014"
+  },
+  {
+    "name": "Unlocked LI015 Achievement",
+    "code": "AC215",
+    "description": "Unlocked LI015 Achievement",
+    "level": 15,
+    "points": 1250,
+    "achievementCode": "LI015"
+  },
+  {
+    "name": "Unlocked LI016 Achievement",
+    "code": "AC216",
+    "description": "Unlocked LI016 Achievement",
+    "level": 16,
+    "points": 1500,
+    "achievementCode": "LI016"
+  },
+  {
+    "name": "Unlocked LI017 Achievement",
+    "code": "AC217",
+    "description": "Unlocked LI017 Achievement",
+    "level": 17,
+    "points": 1500,
+    "achievementCode": "LI017"
+  },
+  {
+    "name": "Unlocked LI018 Achievement",
+    "code": "AC218",
+    "description": "Unlocked LI018 Achievement",
+    "level": 18,
+    "points": 1500,
+    "achievementCode": "LI018"
+  },
+  {
+    "name": "Unlocked LI019 Achievement",
+    "code": "AC219",
+    "description": "Unlocked LI019 Achievement",
+    "level": 19,
+    "points": 2000,
+    "achievementCode": "LI019"
+  }
+]

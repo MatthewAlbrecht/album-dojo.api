@@ -111,7 +111,7 @@ const RootMutation = new GraphQLObjectType({
     deleteUserAchievement,
     createUserAction,
     deleteUserAction,
-  
+
   }),
 });
 

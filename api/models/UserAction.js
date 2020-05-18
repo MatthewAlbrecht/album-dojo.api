@@ -4,6 +4,7 @@ const sequelize = require('../../config/database');
 
 const { User } = require('./User');
 const { Action } = require('./Action');
+const { Achievement } = require('./Achievement');
 const { List } = require('./List');
 const { UserAlbum } = require('./UserAlbum');
 
@@ -22,6 +23,7 @@ const UserAction = sequelize.define('UserAction', {
       model: User,
       key: 'id',
     },
+    unique: false,
     allowNull: false,
   },
   actionCode: {
@@ -30,12 +32,13 @@ const UserAction = sequelize.define('UserAction', {
       model: Action,
       key: 'code',
     },
+    unique: false,
     allowNull: false,
   },
   achievementCode: {
     type: Sequelize.STRING,
     references: {
-      model: Action,
+      model: Achievement,
       key: 'code',
     },
   },
@@ -45,6 +48,7 @@ const UserAction = sequelize.define('UserAction', {
       model: List,
       key: 'id',
     },
+    unique: false,
   },
   userAlbumId: {
     type: Sequelize.UUID,
@@ -52,6 +56,7 @@ const UserAction = sequelize.define('UserAction', {
       model: UserAlbum,
       key: 'id',
     },
+    unique: false,
   },
 }, { tableName });
 

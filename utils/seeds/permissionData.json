@@ -1,0 +1,14 @@
+[
+  {
+    "name": "getUser",
+    "description": "Query the user table"
+  },
+  {
+    "name": "createUser",
+    "description": "Create a new user (not themselves)"
+  },
+  {
+    "name": "updateUser",
+    "description": "Update an existing user (not themselves)"
+  }
+]

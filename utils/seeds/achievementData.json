@@ -1,0 +1,272 @@
+[
+  {
+    "name": "1 Year Club",
+    "code": "YR001",
+    "description": "User has been a member for 1 year",
+    "level": 1
+  },
+  {
+    "name": "2 Year Club",
+    "code": "YR002",
+    "description": "User has been a member for 2 years",
+    "level": 2
+  },
+  {
+    "name": "3 Year Club",
+    "code": "YR003",
+    "description": "User has been a member for 3 years",
+    "level": 3
+  },
+  {
+    "name": "4 Year Club",
+    "code": "YR004",
+    "description": "User has been a member for 4 years",
+    "level": 4
+  },
+  {
+    "name": "5 Year Club",
+    "code": "YR005",
+    "description": "User has been a member for 5 years",
+    "level": 5
+  },
+  {
+    "name": "Add First Album",
+    "code": "AL001",
+    "description": "User has added thier first album",
+    "level": 1
+  },
+  {
+    "name": "Add 5 Albums",
+    "code": "AL002",
+    "description": "User has added 5 total albums",
+    "level": 2
+  },
+  {
+    "name": "Add 10 Albums",
+    "code": "AL003",
+    "description": "User has added 10 total albums",
+    "level": 3
+  },
+  {
+    "name": "Add 25 Albums",
+    "code": "AL004",
+    "description": "User has added 25 total albums",
+    "level": 4
+  },
+  {
+    "name": "Add 50 Albums",
+    "code": "AL005",
+    "description": "User has added 50 total albums",
+    "level": 5
+  },
+  {
+    "name": "Add 100 Albums",
+    "code": "AL006",
+    "description": "User has added 100 total albums",
+    "level": 6
+  },
+  {
+    "name": "Add 150 Albums",
+    "code": "AL007",
+    "description": "User has added 150 total albums",
+    "level": 7
+  },
+  {
+    "name": "Add 200 Albums",
+    "code": "AL008",
+    "description": "User has added 200 total albums",
+    "level": 8
+  },
+  {
+    "name": "Add 250 Albums",
+    "code": "AL009",
+    "description": "User has added 250 total albums",
+    "level": 9
+  },
+  {
+    "name": "Add 300 Albums",
+    "code": "AL010",
+    "description": "User has added 300 total albums",
+    "level": 10
+  },
+  {
+    "name": "Add 400 Albums",
+    "code": "AL011",
+    "description": "User has added 400 total albums",
+    "level": 11
+  },
+  {
+    "name": "Add 500 Albums",
+    "code": "AL012",
+    "description": "User has added 500 total albums",
+    "level": 12
+  },
+  {
+    "name": "Add 600 Albums",
+    "code": "AL013",
+    "description": "User has added 600 total albums",
+    "level": 13
+  },
+  {
+    "name": "Add 700 Albums",
+    "code": "AL014",
+    "description": "User has added 700 total albums",
+    "level": 14
+  },
+  {
+    "name": "Add 800 Albums",
+    "code": "AL015",
+    "description": "User has added 800 total albums",
+    "level": 15
+  },
+  {
+    "name": "Add 900 Albums",
+    "code": "AL016",
+    "description": "User has added 900 total albums",
+    "level": 16
+  },
+  {
+    "name": "Add 1000 Albums",
+    "code": "AL017",
+    "description": "User has added 1000 total albums",
+    "level": 17
+  },
+  {
+    "name": "Add 1250 Albums",
+    "code": "AL018",
+    "description": "User has added 1250 total albums",
+    "level": 18
+  },
+  {
+    "name": "Add 1500 Albums",
+    "code": "AL019",
+    "description": "User has added 1500 total albums",
+    "level": 19
+  },
+  {
+    "name": "Add 1750 Albums",
+    "code": "AL020",
+    "description": "User has added 1750 total albums",
+    "level": 20
+  },
+  {
+    "name": "Add 2000 Albums",
+    "code": "AL021",
+    "description": "User has added 2000 total albums",
+    "level": 21
+  },
+  {
+    "name": "Add First List",
+    "code": "LI001",
+    "description": "User has added their first list",
+    "level": 1
+  },
+  {
+    "name": "Add 5 Lists",
+    "code": "LI002",
+    "description": "User has added 5 lists",
+    "level": 2
+  },
+  {
+    "name": "Add 10 Lists",
+    "code": "LI003",
+    "description": "User has added 10 lists",
+    "level": 3
+  },
+  {
+    "name": "Add 15 Lists",
+    "code": "LI004",
+    "description": "User has added 15 lists",
+    "level": 4
+  },
+  {
+    "name": "Add 20 Lists",
+    "code": "LI005",
+    "description": "User has added 20 lists",
+    "level": 5
+  },
+  {
+    "name": "Add 25 Lists",
+    "code": "LI006",
+    "description": "User has added 25 lists",
+    "level": 6
+  },
+  {
+    "name": "Add 30 Lists",
+    "code": "LI007",
+    "description": "User has added 30 lists",
+    "level": 7
+  },
+  {
+    "name": "Add 35 Lists",
+    "code": "LI008",
+    "description": "User has added 35 lists",
+    "level": 8
+  },
+  {
+    "name": "Add 40 Lists",
+    "code": "LI009",
+    "description": "User has added 40 lists",
+    "level": 9
+  },
+  {
+    "name": "Add 50 Lists",
+    "code": "LI010",
+    "description": "User has added 50 lists",
+    "level": 10
+  },
+  {
+    "name": "Add 60 Lists",
+    "code": "LI011",
+    "description": "User has added 60 lists",
+    "level": 11
+  },
+  {
+    "name": "Add 70 Lists",
+    "code": "LI012",
+    "description": "User has added 70 lists",
+    "level": 12
+  },
+  {
+    "name": "Add 80 Lists",
+    "code": "LI013",
+    "description": "User has added 80 lists",
+    "level": 13
+  },
+  {
+    "name": "Add 90 Lists",
+    "code": "LI014",
+    "description": "User has added 90 lists",
+    "level": 14
+  },
+  {
+    "name": "Add 100 Lists",
+    "code": "LI015",
+    "description": "User has added 100 lists",
+    "level": 15
+  },
+  {
+    "name": "Add 125 Lists",
+    "code": "LI016",
+    "description": "User has added 125 lists",
+    "level": 16
+  },
+  {
+    "name": "Add 150 Lists",
+    "code": "LI017",
+    "description": "User has added 150 lists",
+    "level": 17
+  },
+  {
+    "name": "Add 175 Lists",
+    "code": "LI018",
+    "description": "User has added 175 lists",
+    "level": 18
+  },
+  {
+    "name": "Add 200 Lists",
+    "code": "LI019",
+    "description": "User has added 200 lists",
+    "level": 19
+  }
+]
