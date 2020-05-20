@@ -1,49 +1,37 @@
-const Sequelize = require('sequelize');
+const Sequelize = require('sequelize')
 
-const sequelize = require('../../config/database');
+const sequelize = require('../../config/database')
 
-const { List } = require('./List');
-const { UserAlbum } = require('./UserAlbum');
+const { List } = require('./List')
+const { UserAlbum } = require('./UserAlbum')
 
-const tableName = 'userAchievements';
+const tableName = 'userAchievements'
 
-const UserAchievement = sequelize.define('UserAchievement', {
-  id: {
-    type: Sequelize.UUID,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-    allowNull: false,
-  },
-  // achievementCode: {
-  //   type: Sequelize.STRING,
-  //   references: {
-  //     model: Achievement,
-  //     key: 'code',
-  //   },
-  //   allowNull: false,
-  // },
-  // userId: {
-  //   type: Sequelize.UUID,
-  //   references: {
-  //     model: User,
-  //     key: 'id',
-  //   },
-  //   allowNull: false,
-  // },
-  listId: {
-    type: Sequelize.UUID,
-    references: {
-      model: List,
-      key: 'id',
+const UserAchievement = sequelize.define(
+  'UserAchievement',
+  {
+    id: {
+      type: Sequelize.UUID,
+      primaryKey: true,
+      defaultValue: Sequelize.UUIDV4,
+      allowNull: false,
+    },
+    listId: {
+      type: Sequelize.UUID,
+      references: {
+        model: List,
+        key: 'id',
+      },
+    },
+    userAlbumId: {
+      type: Sequelize.UUID,
+      references: {
+        model: UserAlbum,
+        key: 'id',
+      },
     },
   },
-  userAlbumId: {
-    type: Sequelize.UUID,
-    references: {
-      model: UserAlbum,
-      key: 'id',
-    },
-  },
-}, { tableName });
+  { tableName }
+)
 
-module.exports = { UserAchievement };
+module.exports = { UserAchievement }

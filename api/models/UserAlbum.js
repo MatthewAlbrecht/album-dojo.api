@@ -1,44 +1,48 @@
-const Sequelize = require('sequelize');
+const Sequelize = require('sequelize')
 
-const sequelize = require('../../config/database');
+const sequelize = require('../../config/database')
 
-const { User } = require('./User');
-const { Album } = require('./Album');
+const { User } = require('./User')
+const { Album } = require('./Album')
 
-const tableName = 'userAlbums';
+const tableName = 'userAlbums'
 
-const UserAlbum = sequelize.define('UserAlbum', {
-  id: {
-    type: Sequelize.UUID,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-    allowNull: false,
-  },
-  userId: {
-    type: Sequelize.UUID,
-    references: {
-      model: User,
-      key: 'id',
+const UserAlbum = sequelize.define(
+  'UserAlbum',
+  {
+    id: {
+      type: Sequelize.UUID,
+      primaryKey: true,
+      defaultValue: Sequelize.UUIDV4,
+      allowNull: false,
     },
-    allowNull: false,
-  },
-  albumId: {
-    type: Sequelize.UUID,
-    references: {
-      model: Album,
-      key: 'id',
+    userId: {
+      type: Sequelize.UUID,
+      references: {
+        model: User,
+        key: 'id',
+      },
+      allowNull: false,
     },
-    allowNull: false,
+    albumId: {
+      type: Sequelize.UUID,
+      references: {
+        model: Album,
+        key: 'id',
+      },
+      allowNull: false,
+    },
+    rating: {
+      type: Sequelize.DECIMAL(2, 1),
+    },
+    listenDate: {
+      type: Sequelize.DATEONLY,
+    },
+    tags: {
+      type: Sequelize.ARRAY(Sequelize.STRING),
+    },
   },
-  rating: {
-    type: Sequelize.REAL(2, 1),
-  },
-  listenDate: {
-    type: Sequelize.DATEONLY,
-  },
-  tags: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
-  },
-}, { tableName });
+  { tableName }
+)
 
-module.exports = { UserAlbum };
+module.exports = { UserAlbum }

@@ -1,36 +1,32 @@
-const Sequelize = require('sequelize');
+const Sequelize = require('sequelize')
 
-const sequelize = require('../../config/database');
+const sequelize = require('../../config/database')
 
-const tableName = 'lists';
+const tableName = 'lists'
 
-const List = sequelize.define('List', {
-  id: {
-    type: Sequelize.UUID,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-    allowNull: false,
+const List = sequelize.define(
+  'List',
+  {
+    id: {
+      type: Sequelize.UUID,
+      primaryKey: true,
+      defaultValue: Sequelize.UUIDV4,
+      allowNull: false,
+    },
+    name: {
+      type: Sequelize.STRING,
+    },
+    description: {
+      type: Sequelize.STRING(511),
+    },
+    maxCount: {
+      type: Sequelize.INTEGER,
+    },
+    createdFromTemplate: {
+      type: Sequelize.BOOLEAN,
+    },
   },
-  // userId: {
-  //   type: Sequelize.UUID,
-  //   references: {
-  //     model: User,
-  //     key: 'id',
-  //   },
-  //   allowNull: false,
-  // },
-  name: {
-    type: Sequelize.STRING,
-  },
-  description: {
-    type: Sequelize.STRING(511),
-  },
-  maxCount: {
-    type: Sequelize.INTEGER,
-  },
-  createdFromTemplate: {
-    type: Sequelize.BOOLEAN,
-  },
-}, { tableName });
+  { tableName }
+)
 
-module.exports = { List };
+module.exports = { List }

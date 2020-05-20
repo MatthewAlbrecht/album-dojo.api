@@ -1,36 +1,24 @@
-const Sequelize = require('sequelize');
+const Sequelize = require('sequelize')
 
-const sequelize = require('../../config/database');
+const sequelize = require('../../config/database')
 
-const tableName = 'listUserAlbums';
+const tableName = 'listUserAlbums'
 
-const ListUserAlbum = sequelize.define('ListUserAlbum', {
-  id: {
-    type: Sequelize.UUID,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-    allowNull: false,
+const ListUserAlbum = sequelize.define(
+  'ListUserAlbum',
+  {
+    id: {
+      type: Sequelize.UUID,
+      primaryKey: true,
+      defaultValue: Sequelize.UUIDV4,
+      allowNull: false,
+    },
+    rank: {
+      type: Sequelize.INTEGER,
+      unique: true,
+    },
   },
-  // listId: {
-  //   type: Sequelize.UUID,
-  //   references: {
-  //     model: List,
-  //     key: 'id',
-  //   },
-  //   allowNull: false,
-  // },
-  // userAlbumId: {
-  //   type: Sequelize.UUID,
-  //   references: {
-  //     model: UserAlbum,
-  //     key: 'id',
-  //   },
-  //   allowNull: false,
-  // },
-  rank: {
-    type: Sequelize.INTEGER,
-    unique: true,
-  },
-}, { tableName });
+  { tableName }
+)
 
-module.exports = { ListUserAlbum };
+module.exports = { ListUserAlbum }

@@ -1,60 +1,68 @@
 /**
  * third party libraries
  */
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
-const helmet = require('helmet');
-const http = require('http');
-const mapRoutes = require('express-routes-mapper');
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const express = require('express')
+const { ApolloServer } = require('apollo-server-express')
+const helmet = require('helmet')
+const http = require('http')
+const mapRoutes = require('express-routes-mapper')
 
 /**
  * server configuration
  */
-const config = require('../config/');
-// const auth = require('./policies/auth.policy');
-const dbService = require('./services/db.service');
-const { schema } = require('./graphql');
+const config = require('../config/')
+const dbService = require('./services/db.service')
+const apolloContext = require('./services/apolloContext.service')
+const { schema } = require('./graphql')
 
 // environment: development, testing, production
-const environment = process.env.NODE_ENV;
+const environment = process.env.NODE_ENV
 
 /**
  * express application
  */
-const api = express();
-const server = http.Server(api);
-const mappedRoutes = mapRoutes(config.publicRoutes, 'api/controllers/');
+const api = express()
+const server = http.Server(api)
+const mappedRoutes = mapRoutes(config.publicRoutes, 'api/controllers/')
 const DB = dbService(environment, config.migrate, {
   alter: config.alter,
   force: config.force,
-}).start();
+}).start()
 
 // allow cross origin requests
 // configure to allow only requests from certain origins
-api.use(cors());
+const corsOptions = {
+  origin: 'localhost:3000',
+  credentials: true, // <-- REQUIRED backend setting
+}
+
+api.use(cors())
 
 // secure express app
-api.use(helmet({
-  dnsPrefetchControl: false,
-  frameguard: false,
-  ieNoOpen: false,
-}));
+api.use(
+  helmet({
+    dnsPrefetchControl: false,
+    frameguard: false,
+    ieNoOpen: false,
+  })
+)
 
 // parsing the request bodys
-api.use(bodyParser.urlencoded({ extended: false }));
-api.use(bodyParser.json());
+api.use(bodyParser.urlencoded({ extended: false }))
+api.use(bodyParser.json())
 
 // public REST API
-api.use('/rest', mappedRoutes);
+api.use('/rest', mappedRoutes)
 
 // private GraphQL API
 // api.post('/graphql', (req, res, next) => auth(req, res, next));
 
 const graphQLServer = new ApolloServer({
   schema,
-});
+  context: apolloContext,
+})
 
 graphQLServer.applyMiddleware({
   app: api,
@@ -71,21 +79,25 @@ graphQLServer.applyMiddleware({
       'Access-Control-Allow-Origin',
     ],
   },
+  bodyParserConfig: true,
   playground: {
     settings: {
       'editor.theme': 'light',
     },
   },
-});
+})
 
 server.listen(config.port, () => {
-  if (environment !== 'production'
-    && environment !== 'development'
-    && environment !== 'testing'
+  if (
+    environment !== 'production' &&
+    environment !== 'development' &&
+    environment !== 'testing'
   ) {
     // eslint-disable-next-line no-console
-    console.error(`NODE_ENV is set to ${environment}, but only production and development are valid.`);
-    process.exit(1);
+    console.error(
+      `NODE_ENV is set to ${environment}, but only production and development are valid.`
+    )
+    process.exit(1)
   }
-  return DB;
-});
+  return DB
+})

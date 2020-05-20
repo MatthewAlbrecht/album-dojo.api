@@ -3,11 +3,10 @@ const {
   GraphQLNonNull,
   GraphQLString,
   GraphQLID,
-} = require('graphql');
+} = require('graphql')
 
-
-const UserInputType = (type) => {
-  let allGraphFields = {};
+const UserInputType = type => {
+  let allGraphFields = {}
 
   switch (type) {
     case 'delete':
@@ -15,8 +14,8 @@ const UserInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
-      break;
+      }
+      break
     case 'update':
       allGraphFields = {
         id: {
@@ -34,8 +33,8 @@ const UserInputType = (type) => {
         role: {
           type: GraphQLString,
         },
-      };
-      break;
+      }
+      break
     case 'create':
       allGraphFields = {
         username: {
@@ -56,23 +55,33 @@ const UserInputType = (type) => {
         password2: {
           type: GraphQLString,
         },
-      };
-      break;
+      }
+      break
+    case 'login':
+      allGraphFields = {
+        email: {
+          type: GraphQLString,
+        },
+        password: {
+          type: GraphQLString,
+        },
+      }
+      break
     default:
       allGraphFields = {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
+      }
   }
 
   const userInputType = new GraphQLInputObjectType({
     name: `UserInputType${type[0].toUpperCase() + type.slice(1)}`,
     description: 'This represents a UserInputType',
     fields: allGraphFields,
-  });
+  })
 
-  return userInputType;
-};
+  return userInputType
+}
 
-module.exports = { UserInputType };
+module.exports = { UserInputType }

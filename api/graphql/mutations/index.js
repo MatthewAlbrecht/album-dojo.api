@@ -1,76 +1,60 @@
-const {
-  createAlbum,
-  updateAlbum,
-  deleteAlbum,
-} = require('./AlbumMutation');
+const { createAlbum, updateAlbum, deleteAlbum } = require('./AlbumMutation')
 
 const {
   createUser,
   updateUser,
   deleteUser,
-} = require('./UserMutation');
+  loginUser,
+  signUpUser,
+} = require('./UserMutation')
 
 const {
   createUserAlbum,
   updateUserAlbum,
   deleteUserAlbum,
-} = require('./UserAlbumMutation');
+} = require('./UserAlbumMutation')
 
 const {
   createAchievement,
   updateAchievement,
   deleteAchievement,
-} = require('./AchievementMutation');
+} = require('./AchievementMutation')
 
-const {
-  createAction,
-  updateAction,
-  deleteAction,
-} = require('./ActionMutation');
+const { createAction, updateAction, deleteAction } = require('./ActionMutation')
 
-const {
-  createList,
-  updateList,
-  deleteList,
-} = require('./ListMutation');
+const { createList, updateList, deleteList } = require('./ListMutation')
 
 const {
   createListUserAlbum,
   updateListUserAlbum,
   deleteListUserAlbum,
-} = require('./ListUserAlbumMutation');
+} = require('./ListUserAlbumMutation')
 
 const {
   createPermission,
   updatePermission,
   deletePermission,
-} = require('./PermissionMutation');
+} = require('./PermissionMutation')
 
 const {
   createRolePermission,
   deleteRolePermission,
-} = require('./RolePermissionMutation');
+} = require('./RolePermissionMutation')
 
-const {
-  createRole,
-  updateRole,
-  deleteRole,
-} = require('./RoleMutation');
+const { createRole, updateRole, deleteRole } = require('./RoleMutation')
 
 const {
   createUserAchievement,
   deleteUserAchievement,
-} = require('./UserAchievementMutation');
+} = require('./UserAchievementMutation')
 
-const {
-  createUserAction,
-  deleteUserAction,
-} = require('./UserActionMutation');
+const { createUserAction, deleteUserAction } = require('./UserActionMutation')
 
 module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  loginUser,
   createAlbum,
   updateAlbum,
   deleteAlbum,
@@ -101,4 +85,4 @@ module.exports = {
   deleteUserAchievement,
   createUserAction,
   deleteUserAction,
-};
+}
