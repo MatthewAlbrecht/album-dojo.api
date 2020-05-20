@@ -1,30 +1,27 @@
-const request = require('supertest');
+const request = require('supertest')
 
-const {
-  beforeAction,
-  afterAction,
-} = require('../../helpers/setup');
-const { getAccessToken } = require('../../helpers/getAccessToken');
+const { beforeAction, afterAction } = require('../../helpers/setup')
+const { getAccessToken } = require('../../helpers/getAccessToken')
 
-const { User } = require('../../../api/models');
-const { Note } = require('../../../api/models');
+const { User } = require('../../../api/models')
+const { Note } = require('../../../api/models')
 
-let api;
-let token;
+let api
+let token
 
 beforeAll(async () => {
-  api = await beforeAction();
-  token = await getAccessToken();
-});
+  api = await beforeAction()
+  token = await getAccessToken()
+})
 
 afterAll(() => {
-  afterAction();
-});
+  afterAction()
+})
 
 test('Note | create, update, delete', async () => {
   const user = await User.create({
     email: 'felix@test4.com',
-  });
+  })
 
   const createMutation = `
     mutation {
@@ -37,7 +34,7 @@ test('Note | create, update, delete', async () => {
         note
       }
     }
-  `;
+  `
 
   const res = await request(api)
     .post('/graphql')
@@ -47,21 +44,21 @@ test('Note | create, update, delete', async () => {
     })
     .send({ query: createMutation })
     .expect(200)
-    .expect('Content-Type', /json/);
+    .expect('Content-Type', /json/)
 
-  expect(res.body.data.createNote.userId).toBe(user.id);
-  expect(res.body.data.createNote.note).toBe('create note');
-});
+  expect(res.body.data.createNote.userId).toBe(user.id)
+  expect(res.body.data.createNote.note).toBe('create note')
+})
 
 test('Note | updateNote', async () => {
   const user = await User.create({
     email: 'felix@test5.com',
-  });
+  })
 
   const note = await Note.create({
     userId: user.id,
     note: 'update note',
-  });
+  })
 
   const updateMutation = `
     mutation {
@@ -74,7 +71,7 @@ test('Note | updateNote', async () => {
         note
       }
     }
-  `;
+  `
 
   const res = await request(api)
     .post('/graphql')
@@ -84,11 +81,11 @@ test('Note | updateNote', async () => {
     })
     .send({ query: updateMutation })
     .expect(200)
-    .expect('Content-Type', /json/);
+    .expect('Content-Type', /json/)
 
-  expect(res.body.data.updateNote.userId).toBe(user.id);
-  expect(res.body.data.updateNote.note).toBe('update note update');
-});
+  expect(res.body.data.updateNote.userId).toBe(user.id)
+  expect(res.body.data.updateNote.note).toBe('update note update')
+})
 
 test('Note | updateNote | note does not exist', async () => {
   const updateMutation = `
@@ -101,7 +98,7 @@ test('Note | updateNote | note does not exist', async () => {
         note
       }
     }
-  `;
+  `
 
   const res = await request(api)
     .post('/graphql')
@@ -111,21 +108,21 @@ test('Note | updateNote | note does not exist', async () => {
     })
     .send({ query: updateMutation })
     .expect(200)
-    .expect('Content-Type', /json/);
+    .expect('Content-Type', /json/)
 
-  expect(res.body.data.updateNote).toBe(null);
-  expect(res.body.errors[0].message).toBe('Note with id: 9999 not found!');
-});
+  expect(res.body.data.updateNote).toBe(null)
+  expect(res.body.errors[0].message).toBe('Note with id: 9999 not found!')
+})
 
 test('Note | deleteNote', async () => {
   const user = await User.create({
     email: 'felix@test6.com',
-  });
+  })
 
   const note = await Note.create({
     userId: user.id,
     note: 'delete note',
-  });
+  })
 
   const deleteMutation = `
     mutation {
@@ -135,7 +132,7 @@ test('Note | deleteNote', async () => {
         note
       }
     }
-  `;
+  `
 
   const res = await request(api)
     .post('/graphql')
@@ -145,10 +142,10 @@ test('Note | deleteNote', async () => {
     })
     .send({ query: deleteMutation })
     .expect(200)
-    .expect('Content-Type', /json/);
+    .expect('Content-Type', /json/)
 
-  expect(res.body.data.deleteNote.note).toBe('delete note');
-});
+  expect(res.body.data.deleteNote.note).toBe('delete note')
+})
 
 test('Note | deleteNote | note does not exist', async () => {
   const deleteMutation = `
@@ -159,7 +156,7 @@ test('Note | deleteNote | note does not exist', async () => {
         note
       }
     }
-  `;
+  `
 
   const res = await request(api)
     .post('/graphql')
@@ -169,8 +166,8 @@ test('Note | deleteNote | note does not exist', async () => {
     })
     .send({ query: deleteMutation })
     .expect(200)
-    .expect('Content-Type', /json/);
+    .expect('Content-Type', /json/)
 
-  expect(res.body.data.deleteNote).toBe(null);
-  expect(res.body.errors[0].message).toBe('Note with id: 9999 not found!');
-});
+  expect(res.body.data.deleteNote).toBe(null)
+  expect(res.body.errors[0].message).toBe('Note with id: 9999 not found!')
+})

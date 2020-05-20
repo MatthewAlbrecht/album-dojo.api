@@ -5,10 +5,10 @@ const {
   GraphQLInt,
   GraphQLBoolean,
   GraphQLID,
-} = require('graphql');
+} = require('graphql')
 
-const ListInputType = (type) => {
-  let allGraphFields = {};
+const ListInputType = type => {
+  let allGraphFields = {}
 
   switch (type) {
     case 'delete':
@@ -16,8 +16,8 @@ const ListInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
-      break;
+      }
+      break
     case 'update':
       allGraphFields = {
         id: {
@@ -38,8 +38,8 @@ const ListInputType = (type) => {
         createdFromTemplate: {
           type: GraphQLBoolean,
         },
-      };
-      break;
+      }
+      break
     case 'create':
       allGraphFields = {
         userId: {
@@ -57,23 +57,23 @@ const ListInputType = (type) => {
         createdFromTemplate: {
           type: GraphQLBoolean,
         },
-      };
-      break;
+      }
+      break
     default:
       allGraphFields = {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
+      }
   }
 
   const listInputType = new GraphQLInputObjectType({
     name: `ListInputType${type[0].toUpperCase() + type.slice(1)}`,
     description: 'This represents a ListInputType',
     fields: allGraphFields,
-  });
+  })
 
-  return listInputType;
-};
+  return listInputType
+}
 
-module.exports = { ListInputType };
+module.exports = { ListInputType }

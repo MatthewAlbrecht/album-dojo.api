@@ -1,29 +1,26 @@
-const request = require('supertest');
+const request = require('supertest')
 
-const {
-  beforeAction,
-  afterAction,
-} = require('../../helpers/setup');
-const { getAccessToken } = require('../../helpers/getAccessToken');
+const { beforeAction, afterAction } = require('../../helpers/setup')
+const { getAccessToken } = require('../../helpers/getAccessToken')
 
-const { User } = require('../../../api/models');
+const { User } = require('../../../api/models')
 
-let api;
-let token;
+let api
+let token
 
 beforeAll(async () => {
-  api = await beforeAction();
-  token = await getAccessToken();
-});
+  api = await beforeAction()
+  token = await getAccessToken()
+})
 
 afterAll(async () => {
-  await afterAction();
-});
+  await afterAction()
+})
 
 test('User | updateUser', async () => {
   const user = await User.create({
     email: 'felix@test1.com',
-  });
+  })
 
   const updateMutation = `
     mutation {
@@ -39,7 +36,7 @@ test('User | updateUser', async () => {
         email
       }
     }
-  `;
+  `
 
   const query = `
   {
@@ -50,7 +47,7 @@ test('User | updateUser', async () => {
       email
     }
   }
-`;
+`
 
   const res = await request(api)
     .post('/graphql')
@@ -60,9 +57,9 @@ test('User | updateUser', async () => {
     })
     .send({ query })
     .expect(200)
-    .expect('Content-Type', /json/);
+    .expect('Content-Type', /json/)
 
-  expect(res.body.data.user[0].email).toBe('felix@test1.com');
+  expect(res.body.data.user[0].email).toBe('felix@test1.com')
 
   const res2 = await request(api)
     .post('/graphql')
@@ -72,11 +69,11 @@ test('User | updateUser', async () => {
     })
     .send({ query: updateMutation })
     .expect(200)
-    .expect('Content-Type', /json/);
+    .expect('Content-Type', /json/)
 
-  expect(res2.body.data.updateUser.username).toBe('felix');
-  expect(res2.body.data.updateUser.email).toBe('felix@test2.com');
-});
+  expect(res2.body.data.updateUser.username).toBe('felix')
+  expect(res2.body.data.updateUser.email).toBe('felix@test2.com')
+})
 
 test('User | updateUser | user does not exist', async () => {
   const updateMutation = `
@@ -92,7 +89,7 @@ test('User | updateUser | user does not exist', async () => {
         email
       }
     }
-  `;
+  `
 
   const res = await request(api)
     .post('/graphql')
@@ -102,17 +99,17 @@ test('User | updateUser | user does not exist', async () => {
     })
     .send({ query: updateMutation })
     .expect(200)
-    .expect('Content-Type', /json/);
+    .expect('Content-Type', /json/)
 
-  expect(res.body.data.updateUser).toBe(null);
-  expect(res.body.errors[0].message).toBe('User with id: 9999 not found!');
-});
+  expect(res.body.data.updateUser).toBe(null)
+  expect(res.body.errors[0].message).toBe('User with id: 9999 not found!')
+})
 
 test('User | deleteUser', async () => {
   const user = await User.create({
     username: 'felix',
     email: 'felix@test3.com',
-  });
+  })
 
   const deleteMutation = `
       mutation {
@@ -126,7 +123,7 @@ test('User | deleteUser', async () => {
           email
         }
       }
-    `;
+    `
 
   const res = await request(api)
     .post('/graphql')
@@ -136,10 +133,10 @@ test('User | deleteUser', async () => {
     })
     .send({ query: deleteMutation })
     .expect(200)
-    .expect('Content-Type', /json/);
+    .expect('Content-Type', /json/)
 
-  expect(res.body.data.deleteUser.email).toBe('felix@test3.com');
-});
+  expect(res.body.data.deleteUser.email).toBe('felix@test3.com')
+})
 
 test('User | deleteUser | user does not exist', async () => {
   const deleteMutation = `
@@ -154,7 +151,7 @@ test('User | deleteUser | user does not exist', async () => {
         email
       }
     }
-  `;
+  `
 
   const res = await request(api)
     .post('/graphql')
@@ -164,8 +161,8 @@ test('User | deleteUser | user does not exist', async () => {
     })
     .send({ query: deleteMutation })
     .expect(200)
-    .expect('Content-Type', /json/);
+    .expect('Content-Type', /json/)
 
-  expect(res.body.data.deleteUser).toBe(null);
-  expect(res.body.errors[0].message).toBe('User with id: 9999 not found!');
-});
+  expect(res.body.data.deleteUser).toBe(null)
+  expect(res.body.errors[0].message).toBe('User with id: 9999 not found!')
+})

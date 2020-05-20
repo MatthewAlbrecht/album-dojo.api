@@ -3,10 +3,10 @@ const {
   GraphQLNonNull,
   GraphQLString,
   GraphQLID,
-} = require('graphql');
+} = require('graphql')
 
-const PermissionInputType = (type) => {
-  let allGraphFields = {};
+const PermissionInputType = type => {
+  let allGraphFields = {}
 
   switch (type) {
     case 'delete':
@@ -14,8 +14,8 @@ const PermissionInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
-      break;
+      }
+      break
     case 'update':
       allGraphFields = {
         id: {
@@ -27,8 +27,8 @@ const PermissionInputType = (type) => {
         description: {
           type: GraphQLString,
         },
-      };
-      break;
+      }
+      break
     case 'create':
       allGraphFields = {
         name: {
@@ -37,23 +37,23 @@ const PermissionInputType = (type) => {
         description: {
           type: GraphQLString,
         },
-      };
-      break;
+      }
+      break
     default:
       allGraphFields = {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
+      }
   }
 
   const permissionInputType = new GraphQLInputObjectType({
     name: `PermissionInputType${type[0].toUpperCase() + type.slice(1)}`,
     description: 'This represents a PermissionInputType',
     fields: allGraphFields,
-  });
+  })
 
-  return permissionInputType;
-};
+  return permissionInputType
+}
 
-module.exports = { PermissionInputType };
+module.exports = { PermissionInputType }

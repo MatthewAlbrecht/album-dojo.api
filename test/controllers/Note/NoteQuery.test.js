@@ -1,35 +1,32 @@
-const request = require('supertest');
+const request = require('supertest')
 
-const {
-  beforeAction,
-  afterAction,
-} = require('../../helpers/setup');
-const { getAccessToken } = require('../../helpers/getAccessToken');
+const { beforeAction, afterAction } = require('../../helpers/setup')
+const { getAccessToken } = require('../../helpers/getAccessToken')
 
-const { User } = require('../../../api/models');
-const { Note } = require('../../../api/models');
+const { User } = require('../../../api/models')
+const { Note } = require('../../../api/models')
 
-let api;
-let token;
+let api
+let token
 
 beforeAll(async () => {
-  api = await beforeAction();
-  token = await getAccessToken();
-});
+  api = await beforeAction()
+  token = await getAccessToken()
+})
 
 afterAll(() => {
-  afterAction();
-});
+  afterAction()
+})
 
 test('Note | query', async () => {
   const user = await User.create({
     email: 'felix@test7.com',
-  });
+  })
 
   await Note.create({
     userId: user.id,
     note: 'test',
-  });
+  })
 
   const query = `
     {
@@ -40,7 +37,7 @@ test('Note | query', async () => {
         note
       }
     }
-  `;
+  `
 
   const res = await request(api)
     .post('/graphql')
@@ -50,7 +47,7 @@ test('Note | query', async () => {
     })
     .send({ query })
     .expect(200)
-    .expect('Content-Type', /json/);
+    .expect('Content-Type', /json/)
 
-  expect(res.body.data.note[0].note).toBe('test');
-});
+  expect(res.body.data.note[0].note).toBe('test')
+})

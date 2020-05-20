@@ -1,9 +1,5 @@
 /* eslint-disable global-require */
-const {
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLID,
-} = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLID } = require('graphql')
 
 const PermissionType = new GraphQLObjectType({
   name: 'Permission',
@@ -11,25 +7,25 @@ const PermissionType = new GraphQLObjectType({
   fields: () => ({
     id: {
       type: GraphQLID,
-      resolve: (permission) => permission.id,
+      resolve: permission => permission.id,
     },
     name: {
       type: GraphQLString,
-      resolve: (permission) => permission.name,
+      resolve: permission => permission.name,
     },
     description: {
       type: GraphQLString,
-      resolve: (permission) => permission.description,
+      resolve: permission => permission.description,
     },
     createdAt: {
       type: GraphQLString,
-      resolve: (permission) => permission.createdAt,
+      resolve: permission => permission.createdAt,
     },
     updatedAt: {
       type: GraphQLString,
-      resolve: (permission) => permission.updatedAt,
+      resolve: permission => permission.updatedAt,
     },
   }),
-});
+})
 
-module.exports = { PermissionType };
+module.exports = { PermissionType }

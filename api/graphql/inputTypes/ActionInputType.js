@@ -3,10 +3,10 @@ const {
   GraphQLNonNull,
   GraphQLString,
   GraphQLInt,
-} = require('graphql');
+} = require('graphql')
 
-const ActionInputType = (type) => {
-  let allGraphFields = {};
+const ActionInputType = type => {
+  let allGraphFields = {}
 
   switch (type) {
     case 'delete':
@@ -14,8 +14,8 @@ const ActionInputType = (type) => {
         code: {
           type: new GraphQLNonNull(GraphQLString),
         },
-      };
-      break;
+      }
+      break
     case 'update':
       allGraphFields = {
         code: {
@@ -33,8 +33,8 @@ const ActionInputType = (type) => {
         points: {
           type: GraphQLInt,
         },
-      };
-      break;
+      }
+      break
     case 'create':
       allGraphFields = {
         code: {
@@ -55,23 +55,23 @@ const ActionInputType = (type) => {
         points: {
           type: GraphQLInt,
         },
-      };
-      break;
+      }
+      break
     default:
       allGraphFields = {
         code: {
           type: new GraphQLNonNull(GraphQLString),
         },
-      };
+      }
   }
 
   const actionInputType = new GraphQLInputObjectType({
     name: `ActionInputType${type[0].toUpperCase() + type.slice(1)}`,
     description: 'This represents a ActionInputType',
     fields: allGraphFields,
-  });
+  })
 
-  return actionInputType;
-};
+  return actionInputType
+}
 
-module.exports = { ActionInputType };
+module.exports = { ActionInputType }

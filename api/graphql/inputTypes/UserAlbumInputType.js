@@ -5,11 +5,10 @@ const {
   GraphQLID,
   GraphQLFloat,
   GraphQLList,
-} = require('graphql');
+} = require('graphql')
 
-
-const UserAlbumInputType = (type) => {
-  let allGraphFields = {};
+const UserAlbumInputType = type => {
+  let allGraphFields = {}
 
   switch (type) {
     case 'delete':
@@ -17,8 +16,8 @@ const UserAlbumInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
-      break;
+      }
+      break
     case 'update':
       allGraphFields = {
         id: {
@@ -33,8 +32,8 @@ const UserAlbumInputType = (type) => {
         tags: {
           type: GraphQLList(GraphQLString),
         },
-      };
-      break;
+      }
+      break
     case 'create':
       allGraphFields = {
         userId: {
@@ -52,23 +51,23 @@ const UserAlbumInputType = (type) => {
         tags: {
           type: GraphQLList(GraphQLString),
         },
-      };
-      break;
+      }
+      break
     default:
       allGraphFields = {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
+      }
   }
 
   const userAlbumInputType = new GraphQLInputObjectType({
     name: `UserAlbumInputType${type[0].toUpperCase() + type.slice(1)}`,
     description: 'This represents a UserAlbumInputType',
     fields: allGraphFields,
-  });
+  })
 
-  return userAlbumInputType;
-};
+  return userAlbumInputType
+}
 
-module.exports = { UserAlbumInputType };
+module.exports = { UserAlbumInputType }

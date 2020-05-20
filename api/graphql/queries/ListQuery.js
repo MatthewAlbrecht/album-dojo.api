@@ -4,10 +4,10 @@ const {
   GraphQLBoolean,
   GraphQLInt,
   GraphQLList,
-} = require('graphql');
+} = require('graphql')
 
-const { ListType } = require('../types');
-const { List } = require('../../models');
+const { ListType } = require('../types')
+const { List } = require('../../models')
 
 const listQuery = {
   type: new GraphQLList(ListType),
@@ -46,6 +46,6 @@ const listQuery = {
     },
   },
   resolve: (list, args) => List.findAll({ where: args }),
-};
+}
 
-module.exports = { listQuery };
+module.exports = { listQuery }

@@ -1,3 +1,3 @@
-const { cleanProject } = require('./cleanProject');
+const { cleanProject } = require('./cleanProject')
 
-module.exports = { cleanProject };
+module.exports = { cleanProject }

@@ -1,11 +1,7 @@
-const {
-  GraphQLID,
-  GraphQLString,
-  GraphQLList,
-} = require('graphql');
+const { GraphQLID, GraphQLString, GraphQLList } = require('graphql')
 
-const { RoleType } = require('../types');
-const { Role } = require('../../models');
+const { RoleType } = require('../types')
+const { Role } = require('../../models')
 
 const roleQuery = {
   type: new GraphQLList(RoleType),
@@ -32,6 +28,6 @@ const roleQuery = {
     },
   },
   resolve: (role, args) => Role.findAll({ where: args }),
-};
+}
 
-module.exports = { roleQuery };
+module.exports = { roleQuery }

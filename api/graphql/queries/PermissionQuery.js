@@ -1,11 +1,7 @@
-const {
-  GraphQLID,
-  GraphQLString,
-  GraphQLList,
-} = require('graphql');
+const { GraphQLID, GraphQLString, GraphQLList } = require('graphql')
 
-const { PermissionType } = require('../types');
-const { Permission } = require('../../models');
+const { PermissionType } = require('../types')
+const { Permission } = require('../../models')
 
 const permissionQuery = {
   type: new GraphQLList(PermissionType),
@@ -32,6 +28,6 @@ const permissionQuery = {
     },
   },
   resolve: (permission, args) => Permission.findAll({ where: args }),
-};
+}
 
-module.exports = { permissionQuery };
+module.exports = { permissionQuery }

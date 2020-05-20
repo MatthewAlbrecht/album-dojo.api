@@ -5,8 +5,8 @@ const {
   GraphQLBoolean,
   GraphQLInt,
   GraphQLID,
-} = require('graphql');
-const { User } = require('../../models');
+} = require('graphql')
+const { User } = require('../../models')
 
 const ListType = new GraphQLObjectType({
   name: 'List',
@@ -14,41 +14,41 @@ const ListType = new GraphQLObjectType({
   fields: () => ({
     id: {
       type: GraphQLID,
-      resolve: (list) => list.id,
+      resolve: list => list.id,
     },
     userId: {
       type: GraphQLID,
-      resolve: (list) => list.userId,
+      resolve: list => list.userId,
     },
     user: {
       type: require('./UserType').UserType,
-      resolve: (list) => User.findByPk(list.userId),
+      resolve: list => User.findByPk(list.userId),
     },
     name: {
       type: GraphQLString,
-      resolve: (list) => list.name,
+      resolve: list => list.name,
     },
     description: {
       type: GraphQLString,
-      resolve: (list) => list.description,
+      resolve: list => list.description,
     },
     maxCount: {
       type: GraphQLInt,
-      resolve: (list) => list.maxCount,
+      resolve: list => list.maxCount,
     },
     createdFromTemplate: {
       type: GraphQLBoolean,
-      resolve: (list) => list.createdFromTemplate,
+      resolve: list => list.createdFromTemplate,
     },
     createdAt: {
       type: GraphQLString,
-      resolve: (list) => list.createdAt,
+      resolve: list => list.createdAt,
     },
     updatedAt: {
       type: GraphQLString,
-      resolve: (list) => list.updatedAt,
+      resolve: list => list.updatedAt,
     },
   }),
-});
+})
 
-module.exports = { ListType };
+module.exports = { ListType }

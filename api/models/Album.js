@@ -1,25 +1,29 @@
-const Sequelize = require('sequelize');
+const Sequelize = require('sequelize')
 
-const sequelize = require('../../config/database');
+const sequelize = require('../../config/database')
 
-const tableName = 'albums';
+const tableName = 'albums'
 
-const Album = sequelize.define('Album', {
-  id: {
-    type: Sequelize.UUID,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-    allowNull: false,
+const Album = sequelize.define(
+  'Album',
+  {
+    id: {
+      type: Sequelize.UUID,
+      primaryKey: true,
+      defaultValue: Sequelize.UUIDV4,
+      allowNull: false,
+    },
+    spotifyId: {
+      type: Sequelize.STRING,
+    },
+    isFeatured: {
+      type: Sequelize.BOOLEAN,
+    },
+    spotifyData: {
+      type: Sequelize.JSONB,
+    },
   },
-  spotifyId: {
-    type: Sequelize.STRING,
-  },
-  isFeatured: {
-    type: Sequelize.BOOLEAN,
-  },
-  spotifyData: {
-    type: Sequelize.JSONB,
-  },
-}, { tableName });
+  { tableName }
+)
 
-module.exports = { Album };
+module.exports = { Album }

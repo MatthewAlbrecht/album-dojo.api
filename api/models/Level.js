@@ -1,18 +1,22 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../../config/database');
+const Sequelize = require('sequelize')
+const sequelize = require('../../config/database')
 
-const tableName = 'levels';
+const tableName = 'levels'
 
-const Level = sequelize.define('Level', {
-  level: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    allowNull: false,
+const Level = sequelize.define(
+  'Level',
+  {
+    level: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+    },
+    points: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
   },
-  points: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-}, { tableName });
+  { tableName }
+)
 
-module.exports = { Level };
+module.exports = { Level }

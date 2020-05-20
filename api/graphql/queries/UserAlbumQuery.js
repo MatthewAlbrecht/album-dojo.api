@@ -3,10 +3,10 @@ const {
   GraphQLString,
   GraphQLFloat,
   GraphQLList,
-} = require('graphql');
+} = require('graphql')
 
-const { UserAlbumType } = require('../types');
-const { UserAlbum } = require('../../models');
+const { UserAlbumType } = require('../types')
+const { UserAlbum } = require('../../models')
 
 const userAlbumQuery = {
   type: new GraphQLList(UserAlbumType),
@@ -45,6 +45,6 @@ const userAlbumQuery = {
     },
   },
   resolve: (userAlbum, args) => UserAlbum.findAll({ where: args }),
-};
+}
 
-module.exports = { userAlbumQuery };
+module.exports = { userAlbumQuery }

@@ -3,8 +3,8 @@ const {
   GraphQLString,
   GraphQLBoolean,
   GraphQLID,
-} = require('graphql');
-const { GraphQLJSONObject } = require('graphql-type-json');
+} = require('graphql')
+const { GraphQLJSONObject } = require('graphql-type-json')
 
 const AlbumType = new GraphQLObjectType({
   name: 'Album',
@@ -12,29 +12,29 @@ const AlbumType = new GraphQLObjectType({
   fields: () => ({
     id: {
       type: GraphQLID,
-      resolve: (album) => album.id,
+      resolve: album => album.id,
     },
     spotifyId: {
       type: GraphQLString,
-      resolve: (album) => album.spotifyId,
+      resolve: album => album.spotifyId,
     },
     spotifyData: {
       type: GraphQLJSONObject,
-      resolve: (album) => album.spotifyData,
+      resolve: album => album.spotifyData,
     },
     isFeatured: {
       type: GraphQLBoolean,
-      resolve: (album) => album.isFeatured,
+      resolve: album => album.isFeatured,
     },
     createdAt: {
       type: GraphQLString,
-      resolve: (album) => album.createdAt,
+      resolve: album => album.createdAt,
     },
     updatedAt: {
       type: GraphQLString,
-      resolve: (album) => album.updatedAt,
+      resolve: album => album.updatedAt,
     },
   }),
-});
+})
 
-module.exports = { AlbumType };
+module.exports = { AlbumType }

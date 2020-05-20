@@ -1,11 +1,7 @@
-const {
-  GraphQLID,
-  GraphQLString,
-  GraphQLList,
-} = require('graphql');
+const { GraphQLID, GraphQLString, GraphQLList } = require('graphql')
 
-const { UserAchievementType } = require('../types');
-const { UserAchievement } = require('../../models');
+const { UserAchievementType } = require('../types')
+const { UserAchievement } = require('../../models')
 
 const userAchievementQuery = {
   type: new GraphQLList(UserAchievementType),
@@ -40,6 +36,6 @@ const userAchievementQuery = {
     },
   },
   resolve: (userAchievement, args) => UserAchievement.findAll({ where: args }),
-};
+}
 
-module.exports = { userAchievementQuery };
+module.exports = { userAchievementQuery }

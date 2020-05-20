@@ -5,10 +5,10 @@ const {
   GraphQLString,
   GraphQLFloat,
   GraphQLList,
-} = require('graphql');
+} = require('graphql')
 
-const { AlbumType } = require('./AlbumType');
-const { Album, User } = require('../../models');
+const { AlbumType } = require('./AlbumType')
+const { Album, User } = require('../../models')
 
 const UserAlbumType = new GraphQLObjectType({
   name: 'UserAlbum',
@@ -16,45 +16,45 @@ const UserAlbumType = new GraphQLObjectType({
   fields: () => ({
     id: {
       type: GraphQLID,
-      resolve: (userAlbum) => userAlbum.id,
+      resolve: userAlbum => userAlbum.id,
     },
     userId: {
       type: GraphQLID,
-      resolve: (userAlbum) => userAlbum.userId,
+      resolve: userAlbum => userAlbum.userId,
     },
     albumId: {
       type: GraphQLID,
-      resolve: (userAlbum) => userAlbum.albumId,
+      resolve: userAlbum => userAlbum.albumId,
     },
     user: {
       type: require('./UserType').UserType,
-      resolve: (userAlbum) => User.findByPk(userAlbum.userId),
+      resolve: userAlbum => User.findByPk(userAlbum.userId),
     },
     album: {
       type: AlbumType,
-      resolve: (userAlbum) => Album.findByPk(userAlbum.albumId),
+      resolve: userAlbum => Album.findByPk(userAlbum.albumId),
     },
     rating: {
       type: GraphQLFloat,
-      resolve: (userAlbum) => userAlbum.rating,
+      resolve: userAlbum => userAlbum.rating,
     },
     listenDate: {
       type: GraphQLString,
-      resolve: (userAlbum) => userAlbum.listenDate,
+      resolve: userAlbum => userAlbum.listenDate,
     },
     tags: {
       type: new GraphQLList(GraphQLString),
-      resolve: (userAlbum) => userAlbum.tags,
+      resolve: userAlbum => userAlbum.tags,
     },
     createdAt: {
       type: GraphQLString,
-      resolve: (userAlbum) => userAlbum.createdAt,
+      resolve: userAlbum => userAlbum.createdAt,
     },
     updatedAt: {
       type: GraphQLString,
-      resolve: (userAlbum) => userAlbum.updatedAt,
+      resolve: userAlbum => userAlbum.updatedAt,
     },
   }),
-});
+})
 
-module.exports = { UserAlbumType };
+module.exports = { UserAlbumType }

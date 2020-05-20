@@ -3,11 +3,11 @@ const {
   GraphQLString,
   GraphQLBoolean,
   GraphQLList,
-} = require('graphql');
-const { GraphQLJSONObject } = require('graphql-type-json');
+} = require('graphql')
+const { GraphQLJSONObject } = require('graphql-type-json')
 
-const { AlbumType } = require('../types');
-const { Album } = require('../../models');
+const { AlbumType } = require('../types')
+const { Album } = require('../../models')
 
 const albumQuery = {
   type: new GraphQLList(AlbumType),
@@ -38,6 +38,6 @@ const albumQuery = {
     },
   },
   resolve: (album, args) => Album.findAll({ where: args }),
-};
+}
 
-module.exports = { albumQuery };
+module.exports = { albumQuery }

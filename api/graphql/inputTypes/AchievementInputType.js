@@ -3,10 +3,10 @@ const {
   GraphQLNonNull,
   GraphQLString,
   GraphQLInt,
-} = require('graphql');
+} = require('graphql')
 
-const AchievementInputType = (type) => {
-  let allGraphFields = {};
+const AchievementInputType = type => {
+  let allGraphFields = {}
 
   switch (type) {
     case 'delete':
@@ -14,8 +14,8 @@ const AchievementInputType = (type) => {
         code: {
           type: new GraphQLNonNull(GraphQLString),
         },
-      };
-      break;
+      }
+      break
     case 'update':
       allGraphFields = {
         code: {
@@ -33,8 +33,8 @@ const AchievementInputType = (type) => {
         imageUrl: {
           type: GraphQLString,
         },
-      };
-      break;
+      }
+      break
     case 'create':
       allGraphFields = {
         code: {
@@ -52,23 +52,23 @@ const AchievementInputType = (type) => {
         imageUrl: {
           type: GraphQLString,
         },
-      };
-      break;
+      }
+      break
     default:
       allGraphFields = {
         code: {
           type: new GraphQLNonNull(GraphQLString),
         },
-      };
+      }
   }
 
   const achievementInputType = new GraphQLInputObjectType({
     name: `AchievementInputType${type[0].toUpperCase() + type.slice(1)}`,
     description: 'This represents a AchievementInputType',
     fields: allGraphFields,
-  });
+  })
 
-  return achievementInputType;
-};
+  return achievementInputType
+}
 
-module.exports = { AchievementInputType };
+module.exports = { AchievementInputType }

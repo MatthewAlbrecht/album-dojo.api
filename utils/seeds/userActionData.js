@@ -1,16 +1,15 @@
 const addActions = (count, code, achievementCode) => {
-  const actions = [];
+  const actions = []
   for (let x = 0; x < count; x += 1) {
     const action = {
       actionCode: code,
-    };
+    }
 
-    if (achievementCode) action.achievementCode = achievementCode;
-    actions.push(action);
+    if (achievementCode) action.achievementCode = achievementCode
+    actions.push(action)
   }
-  return actions;
-};
-
+  return actions
+}
 
 module.exports = [
   ...addActions(15, 'AL001'),
@@ -28,4 +27,4 @@ module.exports = [
   ...addActions(1, 'AC104', 'AL004'),
   ...addActions(1, 'AC105', 'AL005'),
   ...addActions(1, 'AC106', 'AL006'),
-];
+]

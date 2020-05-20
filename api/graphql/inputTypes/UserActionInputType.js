@@ -3,10 +3,10 @@ const {
   GraphQLNonNull,
   GraphQLString,
   GraphQLID,
-} = require('graphql');
+} = require('graphql')
 
-const UserActionInputType = (type) => {
-  let allGraphFields = {};
+const UserActionInputType = type => {
+  let allGraphFields = {}
 
   switch (type) {
     case 'delete':
@@ -14,8 +14,8 @@ const UserActionInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
-      break;
+      }
+      break
     case 'create':
       allGraphFields = {
         userId: {
@@ -33,23 +33,23 @@ const UserActionInputType = (type) => {
         userAlbumId: {
           type: GraphQLID,
         },
-      };
-      break;
+      }
+      break
     default:
       allGraphFields = {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
+      }
   }
 
   const userActionInputType = new GraphQLInputObjectType({
     name: `UserActionInputType${type[0].toUpperCase() + type.slice(1)}`,
     description: 'This represents a UserActionInputType',
     fields: allGraphFields,
-  });
+  })
 
-  return userActionInputType;
-};
+  return userActionInputType
+}
 
-module.exports = { UserActionInputType };
+module.exports = { UserActionInputType }

@@ -1,8 +1,4 @@
-const {
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLInt,
-} = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLInt } = require('graphql')
 
 const ActionType = new GraphQLObjectType({
   name: 'Action',
@@ -10,33 +6,33 @@ const ActionType = new GraphQLObjectType({
   fields: () => ({
     name: {
       type: GraphQLString,
-      resolve: (action) => action.name,
+      resolve: action => action.name,
     },
     code: {
       type: GraphQLString,
-      resolve: (action) => action.code,
+      resolve: action => action.code,
     },
     description: {
       type: GraphQLString,
-      resolve: (action) => action.description,
+      resolve: action => action.description,
     },
     level: {
       type: GraphQLInt,
-      resolve: (action) => action.level,
+      resolve: action => action.level,
     },
     points: {
       type: GraphQLInt,
-      resolve: (action) => action.points,
+      resolve: action => action.points,
     },
     createdAt: {
       type: GraphQLString,
-      resolve: (action) => action.createdAt,
+      resolve: action => action.createdAt,
     },
     updatedAt: {
       type: GraphQLString,
-      resolve: (action) => action.updatedAt,
+      resolve: action => action.updatedAt,
     },
   }),
-});
+})
 
-module.exports = { ActionType };
+module.exports = { ActionType }

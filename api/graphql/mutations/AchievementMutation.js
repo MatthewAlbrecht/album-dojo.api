@@ -1,8 +1,8 @@
-const merge = require('lodash.merge');
+const merge = require('lodash.merge')
 
-const { AchievementType } = require('../types');
-const { Achievement } = require('../../models');
-const { AchievementInputType } = require('../inputTypes');
+const { AchievementType } = require('../types')
+const { Achievement } = require('../../models')
+const { AchievementInputType } = require('../inputTypes')
 
 const createAchievement = {
   type: AchievementType,
@@ -14,19 +14,20 @@ const createAchievement = {
     },
   },
   resolve: async (_, { achievement }) => {
-    const createdAchievement = await Achievement.create(achievement);
+    const createdAchievement = await Achievement.create(achievement)
 
     if (!createdAchievement) {
-      throw new Error('Achievement could not be created!');
+      throw new Error('Achievement could not be created!')
     }
 
-    return createdAchievement;
+    return createdAchievement
   },
-};
+}
 
 const updateAchievement = {
   type: AchievementType,
-  description: 'The mutation that allows you to update an existing Achievement by Id',
+  description:
+    'The mutation that allows you to update an existing Achievement by Id',
   args: {
     achievement: {
       name: 'achievement',
@@ -34,10 +35,10 @@ const updateAchievement = {
     },
   },
   resolve: async (_, achievement) => {
-    const foundAchievement = await Achievement.findByPk(achievement.code);
+    const foundAchievement = await Achievement.findByPk(achievement.code)
 
     if (!foundAchievement) {
-      throw new Error(`Achievement with code: ${achievement.code} not found!`);
+      throw new Error(`Achievement with code: ${achievement.code} not found!`)
     }
 
     const updatedAchievement = merge(foundAchievement, {
@@ -45,15 +46,16 @@ const updateAchievement = {
       code: achievement.code,
       description: achievement.description,
       basePoints: achievement.basePoints,
-    });
+    })
 
-    return foundAchievement.update(updatedAchievement);
+    return foundAchievement.update(updatedAchievement)
   },
-};
+}
 
 const deleteAchievement = {
   type: AchievementType,
-  description: 'The mutation that allows you to delete a existing Achievement by Id',
+  description:
+    'The mutation that allows you to delete a existing Achievement by Id',
   args: {
     achievement: {
       name: 'achievement',
@@ -61,24 +63,24 @@ const deleteAchievement = {
     },
   },
   resolve: async (value, { code }) => {
-    const foundAchievement = await Achievement.findByPk(code);
+    const foundAchievement = await Achievement.findByPk(code)
 
     if (!foundAchievement) {
-      throw new Error(`Achievement with code: ${code} not found!`);
+      throw new Error(`Achievement with code: ${code} not found!`)
     }
 
     await Achievement.destroy({
       where: {
         code,
       },
-    });
+    })
 
-    return foundAchievement;
+    return foundAchievement
   },
-};
+}
 
 module.exports = {
   createAchievement,
   updateAchievement,
   deleteAchievement,
-};
+}

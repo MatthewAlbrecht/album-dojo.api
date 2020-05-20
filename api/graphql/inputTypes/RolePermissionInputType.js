@@ -3,10 +3,10 @@ const {
   GraphQLNonNull,
   GraphQLString,
   GraphQLID,
-} = require('graphql');
+} = require('graphql')
 
-const RolePermissionInputType = (type) => {
-  let allGraphFields = {};
+const RolePermissionInputType = type => {
+  let allGraphFields = {}
 
   switch (type) {
     case 'delete':
@@ -14,8 +14,8 @@ const RolePermissionInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
-      break;
+      }
+      break
     case 'create':
       allGraphFields = {
         roleName: {
@@ -24,23 +24,23 @@ const RolePermissionInputType = (type) => {
         permissionName: {
           type: new GraphQLNonNull(GraphQLString),
         },
-      };
-      break;
+      }
+      break
     default:
       allGraphFields = {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
+      }
   }
 
   const rolePermissionInputType = new GraphQLInputObjectType({
     name: `RolePermissionInputType${type[0].toUpperCase() + type.slice(1)}`,
     description: 'This represents a RolePermissionInputType',
     fields: allGraphFields,
-  });
+  })
 
-  return rolePermissionInputType;
-};
+  return rolePermissionInputType
+}
 
-module.exports = { RolePermissionInputType };
+module.exports = { RolePermissionInputType }

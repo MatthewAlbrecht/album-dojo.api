@@ -1,12 +1,7 @@
-const {
-  GraphQLID,
-  GraphQLString,
-  GraphQLInt,
-  GraphQLList,
-} = require('graphql');
+const { GraphQLID, GraphQLString, GraphQLInt, GraphQLList } = require('graphql')
 
-const { ListUserAlbumType } = require('../types');
-const { ListUserAlbum } = require('../../models');
+const { ListUserAlbumType } = require('../types')
+const { ListUserAlbum } = require('../../models')
 
 const listUserAlbumQuery = {
   type: new GraphQLList(ListUserAlbumType),
@@ -37,6 +32,6 @@ const listUserAlbumQuery = {
     },
   },
   resolve: (listUserAlbum, args) => ListUserAlbum.findAll({ where: args }),
-};
+}
 
-module.exports = { listUserAlbumQuery };
+module.exports = { listUserAlbumQuery }

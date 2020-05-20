@@ -3,10 +3,10 @@ const {
   GraphQLNonNull,
   GraphQLInt,
   GraphQLID,
-} = require('graphql');
+} = require('graphql')
 
-const ListUserAlbumInputType = (type) => {
-  let allGraphFields = {};
+const ListUserAlbumInputType = type => {
+  let allGraphFields = {}
 
   switch (type) {
     case 'delete':
@@ -14,8 +14,8 @@ const ListUserAlbumInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
-      break;
+      }
+      break
     case 'update':
       allGraphFields = {
         id: {
@@ -24,8 +24,8 @@ const ListUserAlbumInputType = (type) => {
         rank: {
           type: GraphQLInt,
         },
-      };
-      break;
+      }
+      break
     case 'create':
       allGraphFields = {
         listId: {
@@ -37,23 +37,23 @@ const ListUserAlbumInputType = (type) => {
         rank: {
           type: GraphQLInt,
         },
-      };
-      break;
+      }
+      break
     default:
       allGraphFields = {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
+      }
   }
 
   const listUserAlbumInputType = new GraphQLInputObjectType({
     name: `ListUserAlbumInputType${type[0].toUpperCase() + type.slice(1)}`,
     description: 'This represents a ListUserAlbumInputType',
     fields: allGraphFields,
-  });
+  })
 
-  return listUserAlbumInputType;
-};
+  return listUserAlbumInputType
+}
 
-module.exports = { ListUserAlbumInputType };
+module.exports = { ListUserAlbumInputType }

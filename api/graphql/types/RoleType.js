@@ -1,10 +1,6 @@
 /* eslint-disable global-require */
-const {
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLID,
-} = require('graphql');
-const { RolePermission } = require('../../models');
+const { GraphQLObjectType, GraphQLString, GraphQLID } = require('graphql')
+const { RolePermission } = require('../../models')
 
 const RoleType = new GraphQLObjectType({
   name: 'Role',
@@ -12,29 +8,30 @@ const RoleType = new GraphQLObjectType({
   fields: () => ({
     id: {
       type: GraphQLID,
-      resolve: (role) => role.id,
+      resolve: role => role.id,
     },
     name: {
       type: GraphQLString,
-      resolve: (role) => role.name,
+      resolve: role => role.name,
     },
     description: {
       type: GraphQLString,
-      resolve: (role) => role.description,
+      resolve: role => role.description,
     },
     permissions: {
       type: require('./RolePermissionType').RolePermissionType,
-      resolve: (role) => RolePermission.findAll({ where: { roleName: role.name } }),
+      resolve: role =>
+        RolePermission.findAll({ where: { roleName: role.name } }),
     },
     createdAt: {
       type: GraphQLString,
-      resolve: (role) => role.createdAt,
+      resolve: role => role.createdAt,
     },
     updatedAt: {
       type: GraphQLString,
-      resolve: (role) => role.updatedAt,
+      resolve: role => role.updatedAt,
     },
   }),
-});
+})
 
-module.exports = { RoleType };
+module.exports = { RoleType }

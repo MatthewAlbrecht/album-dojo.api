@@ -1,3 +1,3 @@
-const privateRoutes = {};
+const privateRoutes = {}
 
-module.exports = privateRoutes;
+module.exports = privateRoutes

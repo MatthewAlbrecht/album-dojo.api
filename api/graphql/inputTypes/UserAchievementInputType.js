@@ -3,10 +3,10 @@ const {
   GraphQLNonNull,
   GraphQLString,
   GraphQLID,
-} = require('graphql');
+} = require('graphql')
 
-const UserAchievementInputType = (type) => {
-  let allGraphFields = {};
+const UserAchievementInputType = type => {
+  let allGraphFields = {}
 
   switch (type) {
     case 'delete':
@@ -14,8 +14,8 @@ const UserAchievementInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
-      break;
+      }
+      break
     case 'create':
       allGraphFields = {
         userId: {
@@ -30,23 +30,23 @@ const UserAchievementInputType = (type) => {
         userAlbumId: {
           type: GraphQLID,
         },
-      };
-      break;
+      }
+      break
     default:
       allGraphFields = {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
+      }
   }
 
   const userAchievementInputType = new GraphQLInputObjectType({
     name: `UserAchievementInputType${type[0].toUpperCase() + type.slice(1)}`,
     description: 'This represents a UserAchievementInputType',
     fields: allGraphFields,
-  });
+  })
 
-  return userAchievementInputType;
-};
+  return userAchievementInputType
+}
 
-module.exports = { UserAchievementInputType };
+module.exports = { UserAchievementInputType }

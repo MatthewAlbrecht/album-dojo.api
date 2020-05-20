@@ -1,11 +1,7 @@
-const {
-  GraphQLID,
-  GraphQLString,
-  GraphQLList,
-} = require('graphql');
+const { GraphQLID, GraphQLString, GraphQLList } = require('graphql')
 
-const { RolePermissionType } = require('../types');
-const { RolePermission } = require('../../models');
+const { RolePermissionType } = require('../types')
+const { RolePermission } = require('../../models')
 
 const rolePermissionQuery = {
   type: new GraphQLList(RolePermissionType),
@@ -30,9 +26,8 @@ const rolePermissionQuery = {
       name: 'updatedAt',
       type: GraphQLString,
     },
-
   },
   resolve: (rolePermission, args) => RolePermission.findAll({ where: args }),
-};
+}
 
-module.exports = { rolePermissionQuery };
+module.exports = { rolePermissionQuery }

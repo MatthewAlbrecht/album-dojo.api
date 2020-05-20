@@ -3,10 +3,10 @@ const {
   GraphQLNonNull,
   GraphQLString,
   GraphQLID,
-} = require('graphql');
+} = require('graphql')
 
-const RoleInputType = (type) => {
-  let allGraphFields = {};
+const RoleInputType = type => {
+  let allGraphFields = {}
 
   switch (type) {
     case 'delete':
@@ -14,8 +14,8 @@ const RoleInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
-      break;
+      }
+      break
     case 'update':
       allGraphFields = {
         id: {
@@ -27,8 +27,8 @@ const RoleInputType = (type) => {
         description: {
           type: GraphQLString,
         },
-      };
-      break;
+      }
+      break
     case 'create':
       allGraphFields = {
         name: {
@@ -37,23 +37,23 @@ const RoleInputType = (type) => {
         description: {
           type: GraphQLString,
         },
-      };
-      break;
+      }
+      break
     default:
       allGraphFields = {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
+      }
   }
 
   const roleInputType = new GraphQLInputObjectType({
     name: `RoleInputType${type[0].toUpperCase() + type.slice(1)}`,
     description: 'This represents a RoleInputType',
     fields: allGraphFields,
-  });
+  })
 
-  return roleInputType;
-};
+  return roleInputType
+}
 
-module.exports = { RoleInputType };
+module.exports = { RoleInputType }

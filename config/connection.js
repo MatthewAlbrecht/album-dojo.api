@@ -4,7 +4,7 @@ const development = {
   password: '',
   host: 'localhost',
   dialect: 'postgres',
-};
+}
 
 const testing = {
   database: 'test2',
@@ -12,7 +12,7 @@ const testing = {
   password: '',
   host: 'localhost',
   dialect: 'postgres',
-};
+}
 
 const production = {
   database: process.env.DB_NAME,
@@ -20,10 +20,10 @@ const production = {
   password: process.env.DB_PASS,
   host: process.env.DB_HOST || 'localhost',
   dialect: 'postgres',
-};
+}
 
 module.exports = {
   development,
   testing,
   production,
-};
+}

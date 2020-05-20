@@ -1,11 +1,7 @@
-const {
-  GraphQLString,
-  GraphQLInt,
-  GraphQLList,
-} = require('graphql');
+const { GraphQLString, GraphQLInt, GraphQLList } = require('graphql')
 
-const { ActionType } = require('../types');
-const { Action } = require('../../models');
+const { ActionType } = require('../types')
+const { Action } = require('../../models')
 
 const actionQuery = {
   type: new GraphQLList(ActionType),
@@ -40,6 +36,6 @@ const actionQuery = {
     },
   },
   resolve: (action, args) => Action.findAll({ where: args }),
-};
+}
 
-module.exports = { actionQuery };
+module.exports = { actionQuery }

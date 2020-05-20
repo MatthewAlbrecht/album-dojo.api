@@ -1,22 +1,19 @@
-const request = require('supertest');
+const request = require('supertest')
 
-const {
-  beforeAction,
-  afterAction,
-} = require('../../helpers/setup');
-const { getAccessToken } = require('../../helpers/getAccessToken');
+const { beforeAction, afterAction } = require('../../helpers/setup')
+const { getAccessToken } = require('../../helpers/getAccessToken')
 
-let api;
-let token;
+let api
+let token
 
 beforeAll(async () => {
-  api = await beforeAction();
-  token = await getAccessToken();
-});
+  api = await beforeAction()
+  token = await getAccessToken()
+})
 
 afterAll(() => {
-  afterAction();
-});
+  afterAction()
+})
 
 test('User | query', async () => {
   const query = `
@@ -30,7 +27,7 @@ test('User | query', async () => {
         }
       }
     }
-  `;
+  `
 
   const res = await request(api)
     .post('/graphql')
@@ -40,8 +37,8 @@ test('User | query', async () => {
     })
     .send({ query })
     .expect(200)
-    .expect('Content-Type', /json/);
+    .expect('Content-Type', /json/)
 
-  expect(res.body.data.user[0].username).toBe('test');
-  expect(res.body.data.user[0].notes).toEqual([]);
-});
+  expect(res.body.data.user[0].username).toBe('test')
+  expect(res.body.data.user[0].notes).toEqual([])
+})

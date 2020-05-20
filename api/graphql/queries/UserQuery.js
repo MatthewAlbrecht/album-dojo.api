@@ -1,11 +1,7 @@
-const {
-  GraphQLID,
-  GraphQLString,
-  GraphQLList,
-} = require('graphql');
+const { GraphQLID, GraphQLString, GraphQLList } = require('graphql')
 
-const { UserType } = require('../types');
-const { User } = require('../../models');
+const { UserType } = require('../types')
+const { User } = require('../../models')
 
 const userQuery = {
   type: new GraphQLList(UserType),
@@ -48,6 +44,6 @@ const userQuery = {
     },
   },
   resolve: (user, args) => User.findAll({ where: args }),
-};
+}
 
-module.exports = { userQuery };
+module.exports = { userQuery }

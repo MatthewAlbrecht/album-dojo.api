@@ -4,11 +4,11 @@ const {
   GraphQLString,
   GraphQLBoolean,
   GraphQLID,
-} = require('graphql');
-const { GraphQLJSONObject } = require('graphql-type-json');
+} = require('graphql')
+const { GraphQLJSONObject } = require('graphql-type-json')
 
-const AlbumInputType = (type) => {
-  let allGraphFields = {};
+const AlbumInputType = type => {
+  let allGraphFields = {}
 
   switch (type) {
     case 'delete':
@@ -16,8 +16,8 @@ const AlbumInputType = (type) => {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
-      break;
+      }
+      break
     case 'update':
       allGraphFields = {
         id: {
@@ -32,8 +32,8 @@ const AlbumInputType = (type) => {
         spotifyData: {
           type: GraphQLJSONObject,
         },
-      };
-      break;
+      }
+      break
     case 'create':
       allGraphFields = {
         spotifyId: {
@@ -45,23 +45,23 @@ const AlbumInputType = (type) => {
         spotifyData: {
           type: GraphQLJSONObject,
         },
-      };
-      break;
+      }
+      break
     default:
       allGraphFields = {
         id: {
           type: new GraphQLNonNull(GraphQLID),
         },
-      };
+      }
   }
 
   const albumInputType = new GraphQLInputObjectType({
     name: `AlbumInputType${type[0].toUpperCase() + type.slice(1)}`,
     description: 'This represents a AlbumInputType',
     fields: allGraphFields,
-  });
+  })
 
-  return albumInputType;
-};
+  return albumInputType
+}
 
-module.exports = { AlbumInputType };
+module.exports = { AlbumInputType }

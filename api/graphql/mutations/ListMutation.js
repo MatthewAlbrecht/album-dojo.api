@@ -1,8 +1,8 @@
-const merge = require('lodash.merge');
+const merge = require('lodash.merge')
 
-const { ListType } = require('../types');
-const { List } = require('../../models');
-const { ListInputType } = require('../inputTypes');
+const { ListType } = require('../types')
+const { List } = require('../../models')
+const { ListInputType } = require('../inputTypes')
 
 const createList = {
   type: ListType,
@@ -14,15 +14,15 @@ const createList = {
     },
   },
   resolve: async (_, { list }) => {
-    const createdList = await List.create(list);
+    const createdList = await List.create(list)
 
     if (!createdList) {
-      throw new Error('List could not be created!');
+      throw new Error('List could not be created!')
     }
 
-    return createdList;
+    return createdList
   },
-};
+}
 
 const updateList = {
   type: ListType,
@@ -34,10 +34,10 @@ const updateList = {
     },
   },
   resolve: async (_, list) => {
-    const foundList = await List.findByPk(list.id);
+    const foundList = await List.findByPk(list.id)
 
     if (!foundList) {
-      throw new Error(`List with id: ${list.id} not found!`);
+      throw new Error(`List with id: ${list.id} not found!`)
     }
 
     const updatedList = merge(foundList, {
@@ -45,11 +45,11 @@ const updateList = {
       description: list.description,
       maxCount: list.maxCount,
       createdFromTemplate: list.createdFromTemplate,
-    });
+    })
 
-    return foundList.update(updatedList);
+    return foundList.update(updatedList)
   },
-};
+}
 
 const deleteList = {
   type: ListType,
@@ -61,24 +61,24 @@ const deleteList = {
     },
   },
   resolve: async (value, { id }) => {
-    const foundList = await List.findByPk(id);
+    const foundList = await List.findByPk(id)
 
     if (!foundList) {
-      throw new Error(`List with id: ${id} not found!`);
+      throw new Error(`List with id: ${id} not found!`)
     }
 
     await List.destroy({
       where: {
         id,
       },
-    });
+    })
 
-    return foundList;
+    return foundList
   },
-};
+}
 
 module.exports = {
   createList,
   updateList,
   deleteList,
-};
+}
