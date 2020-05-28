@@ -8,15 +8,17 @@ const { ApolloServer } = require('apollo-server-express')
 const helmet = require('helmet')
 const http = require('http')
 const mapRoutes = require('express-routes-mapper')
+const Redis = require('ioredis')
 
 /**
  * server configuration
  */
+require('dotenv').config()
 const config = require('../config/')
 const dbService = require('./services/db.service')
-const apolloContext = require('./services/apolloContext.service')
+const apolloContext = require('./helpers/apolloContext.helper')
 const { schema } = require('./graphql')
-
+const redis = new Redis()
 // environment: development, testing, production
 const environment = process.env.NODE_ENV
 
@@ -53,15 +55,32 @@ api.use(
 api.use(bodyParser.urlencoded({ extended: false }))
 api.use(bodyParser.json())
 
-// public REST API
-api.use('/rest', mappedRoutes)
+// adding user information to req.context (will be used by apollo)
+api.use('/', async (req, res, next) => {
+  req.apolloContext = await apolloContext(req)
+  next()
+})
 
+// adding redis store to request object
+api.use('/', (req, res, next) => {
+  req.redis = redis
+  next()
+})
+
+// public REST API
+api.use('/api', mappedRoutes)
 // private GraphQL API
 // api.post('/graphql', (req, res, next) => auth(req, res, next));
 
 const graphQLServer = new ApolloServer({
   schema,
-  context: apolloContext,
+  context: async ({ req }) => {
+    let context = await apolloContext(req)
+    return {
+      ...context,
+      redis: req.redis,
+    }
+  },
 })
 
 graphQLServer.applyMiddleware({

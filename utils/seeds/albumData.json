@@ -1,38 +1,110 @@
 [
   {
     "spotifyId": "fakespotifyid1",
-    "isFeatured": true,
-    "spotifyData": {
-      "albumName": "IGOR",
-      "artistName": "Tyler, the Creator",
-      "tracks": ["Track 1", "Track 2", "Track 3", "Track 4"]
-    }
+    "artists": [{ "name": "Tyler, The Creator", "spotifyId": "fakeartistId" }],
+    "images": [
+      {
+        "height": 640,
+        "url": "https://i.scdn.co/image/07c323340e03e25a8e5dd5b9a8ec72b69c50089d",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://i.scdn.co/image/8b662d81966a0ec40dc10563807696a8479cd48b",
+        "width": 300
+      },
+      {
+        "height": 64,
+        "url": "https://i.scdn.co/image/54b3222c8aaa77890d1ac37b3aaaa1fc9ba630ae",
+        "width": 64
+      }
+    ],
+    "name": "Flower Boy",
+    "releaseDate": "2017-7-15",
+    "releaseDatePrecision": "day",
+    "totalTracks": 11,
+    "durationInMs": 2476800,
+    "tracks": ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"]
   },
   {
     "spotifyId": "fakespotifyid2",
-    "isFeatured": false,
-    "spotifyData": {
-      "albumName": "Flower Boy",
-      "artistName": "Tyler, the Creator",
-      "tracks": ["Track 1", "Track 2", "Track 3", "Track 4"]
-    }
+    "artists": [{ "name": "Tyler, The Creator", "spotifyId": "fakeartistId" }],
+    "images": [
+      {
+        "height": 640,
+        "url": "https://i.scdn.co/image/07c323340e03e25a8e5dd5b9a8ec72b69c50089d",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://i.scdn.co/image/8b662d81966a0ec40dc10563807696a8479cd48b",
+        "width": 300
+      },
+      {
+        "height": 64,
+        "url": "https://i.scdn.co/image/54b3222c8aaa77890d1ac37b3aaaa1fc9ba630ae",
+        "width": 64
+      }
+    ],
+    "name": "IGOR",
+    "releaseDate": "2019-4-11",
+    "releaseDatePrecision": "day",
+    "totalTracks": 9,
+    "durationInMs": 1976800,
+    "tracks": ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"]
   },
   {
     "spotifyId": "fakespotifyid3",
-    "isFeatured": false,
-    "spotifyData": {
-      "albumName": "Kids See Ghosts",
-      "artistName": "Kids See Ghosts",
-      "tracks": ["Track 1", "Track 2", "Track 3", "Track 4"]
-    }
+    "artists": [{ "name": "Kanye West", "spotifyId": "fakeartistId2" }],
+    "images": [
+      {
+        "height": 640,
+        "url": "https://i.scdn.co/image/07c323340e03e25a8e5dd5b9a8ec72b69c50089d",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://i.scdn.co/image/8b662d81966a0ec40dc10563807696a8479cd48b",
+        "width": 300
+      },
+      {
+        "height": 64,
+        "url": "https://i.scdn.co/image/54b3222c8aaa77890d1ac37b3aaaa1fc9ba630ae",
+        "width": 64
+      }
+    ],
+    "name": "Ye",
+    "releaseDate": "2018-3-10",
+    "releaseDatePrecision": "day",
+    "totalTracks": 7,
+    "durationInMs": 1576800,
+    "tracks": ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"]
   },
   {
     "spotifyId": "fakespotifyid4",
-    "isFeatured": true,
-    "spotifyData": {
-      "albumName": "Freudian",
-      "artistName": "Daniel Caesar",
-      "tracks": ["Track 1", "Track 2", "Track 3", "Track 4"]
-    }
+    "artists": [{ "name": "Bon Iver", "spotifyId": "fakeartistId3" }],
+    "images": [
+      {
+        "height": 640,
+        "url": "https://i.scdn.co/image/07c323340e03e25a8e5dd5b9a8ec72b69c50089d",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://i.scdn.co/image/8b662d81966a0ec40dc10563807696a8479cd48b",
+        "width": 300
+      },
+      {
+        "height": 64,
+        "url": "https://i.scdn.co/image/54b3222c8aaa77890d1ac37b3aaaa1fc9ba630ae",
+        "width": 64
+      }
+    ],
+    "name": "Bon Iver",
+    "releaseDate": "2011-2-2",
+    "releaseDatePrecision": "day",
+    "totalTracks": 10,
+    "durationInMs": 2076800,
+    "tracks": ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"]
   }
 ]

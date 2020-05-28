@@ -1,11 +1,16 @@
-const { createAlbum, updateAlbum, deleteAlbum } = require('./AlbumMutation')
+const {
+  createAlbum,
+  createAlbumById,
+  createAlbumsByPlaylist,
+  updateAlbum,
+  deleteAlbum,
+} = require('./AlbumMutation')
 
 const {
   createUser,
   updateUser,
   deleteUser,
   loginUser,
-  signUpUser,
 } = require('./UserMutation')
 
 const {
@@ -56,6 +61,8 @@ module.exports = {
   deleteUser,
   loginUser,
   createAlbum,
+  createAlbumById,
+  createAlbumsByPlaylist,
   updateAlbum,
   deleteAlbum,
   createUserAlbum,

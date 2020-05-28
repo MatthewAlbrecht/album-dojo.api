@@ -1,0 +1,18 @@
+[
+  {
+    "roleName": "GUEST",
+    "permissions": ["getUser", "updateUser", "createUser"]
+  },
+  {
+    "roleName": "USER",
+    "permissions": ["getUser", "updateUser", "createUser"]
+  },
+  {
+    "roleName": "ADMIN",
+    "permissions": ["getUser", "updateUser", "createUser", "loginAdmin"]
+  },
+  {
+    "roleName": "SUPER_ADMIN",
+    "permissions": ["getUser", "updateUser", "createUser", "loginAdmin"]
+  }
+]

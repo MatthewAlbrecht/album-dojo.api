@@ -1,10 +1,12 @@
-const { UserInputError } = require('apollo-server-express')
+const { UserInputError, AuthenticationError } = require('apollo-server-express')
 const merge = require('lodash.merge')
 const authService = require('../../services/auth.service')
 const bcryptService = require('../../services/bcrypt.service')
+const permissionService = require('../../services/permission.service')
+const { PERMISSIONS, DOMAINS } = require('../../../utils/constants')
 
 const { UserType } = require('../types')
-const { User } = require('../../models')
+const { User, Role, Permission } = require('../../models')
 const { UserInputType } = require('../inputTypes')
 
 const createUser = {
@@ -95,19 +97,30 @@ const loginUser = {
       type: UserInputType('login'),
     },
   },
-  resolve: async (_, { user }) => {
-    const { email, password } = user
+  resolve: async (_, args, context) => {
+    console.log('MADE IT HERE')
+
+    const { email, password } = args.user
 
     if (email && password) {
       try {
-        const user = await User.findOne({
-          where: {
-            email,
-          },
-        })
+        const user = await findUserByEmailWithPermissions(email)
 
         if (!user) {
           throw new UserInputError('Bad Request: User not found')
+        }
+
+        const { domain } = context
+        const isAdminLogin = domain === DOMAINS.ADMIN_UI
+        const permissions = user.Role.Permissions.map(
+          permission => permission.name
+        )
+        const isAuthorized = permissionService(
+          PERMISSIONS.LOGIN_ADMIN,
+          permissions
+        )
+        if (isAdminLogin && !isAuthorized) {
+          throw new AuthenticationError('Unauthorized')
         }
 
         if (bcryptService().comparePassword(password, user.password)) {
@@ -124,6 +137,28 @@ const loginUser = {
     throw new UserInputError("Bad Request: Email and password don't match")
   },
 }
+
+const findUserByEmailWithPermissions = email =>
+  User.findOne({
+    where: {
+      email,
+    },
+    include: [
+      {
+        model: Role,
+        attributes: ['name'],
+        include: [
+          {
+            model: Permission,
+            attributes: ['name'],
+            through: {
+              attributes: [],
+            },
+          },
+        ],
+      },
+    ],
+  })
 
 module.exports = {
   createUser,

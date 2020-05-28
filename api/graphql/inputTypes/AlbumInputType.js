@@ -2,8 +2,10 @@ const {
   GraphQLInputObjectType,
   GraphQLNonNull,
   GraphQLString,
-  GraphQLBoolean,
+  GraphQLList,
+  GraphQLInt,
   GraphQLID,
+  GraphQLBoolean,
 } = require('graphql')
 const { GraphQLJSONObject } = require('graphql-type-json')
 
@@ -26,11 +28,32 @@ const AlbumInputType = type => {
         spotifyId: {
           type: GraphQLString,
         },
-        isFeatured: {
-          type: GraphQLBoolean,
+        artists: {
+          type: new GraphQLList(GraphQLJSONObject),
         },
-        spotifyData: {
-          type: GraphQLJSONObject,
+        images: {
+          type: new GraphQLList(GraphQLJSONObject),
+        },
+        name: {
+          type: GraphQLString,
+        },
+        releaseDate: {
+          type: GraphQLString,
+        },
+        releaseDatePrecision: {
+          type: GraphQLString,
+        },
+        totalTracks: {
+          type: GraphQLInt,
+        },
+        durationInMs: {
+          type: GraphQLInt,
+        },
+        tracks: {
+          type: new GraphQLList(GraphQLString),
+        },
+        active: {
+          type: GraphQLBoolean,
         },
       }
       break
@@ -39,11 +62,52 @@ const AlbumInputType = type => {
         spotifyId: {
           type: GraphQLString,
         },
-        isFeatured: {
+        artists: {
+          type: new GraphQLList(GraphQLJSONObject),
+        },
+        images: {
+          type: new GraphQLList(GraphQLJSONObject),
+        },
+        name: {
+          type: GraphQLString,
+        },
+        releaseDate: {
+          type: GraphQLString,
+        },
+        releaseDatePrecision: {
+          type: GraphQLString,
+        },
+        totalTracks: {
+          type: GraphQLInt,
+        },
+        durationInMs: {
+          type: GraphQLInt,
+        },
+        tracks: {
+          type: new GraphQLList(GraphQLString),
+        },
+        active: {
           type: GraphQLBoolean,
         },
-        spotifyData: {
-          type: GraphQLJSONObject,
+      }
+      break
+    case 'createById':
+      allGraphFields = {
+        spotifyId: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+        spotifyAccessToken: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+      }
+      break
+    case 'createByPlaylistId':
+      allGraphFields = {
+        spotifyPlaylistId: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+        spotifyAccessToken: {
+          type: new GraphQLNonNull(GraphQLString),
         },
       }
       break

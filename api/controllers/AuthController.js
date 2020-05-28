@@ -1,63 +1,171 @@
+const generator = require('generate-password')
+const get = require('lodash.get')
+var rp = require('request-promise')
 const { User } = require('../models')
 const authService = require('../services/auth.service')
-const bcryptService = require('../services/bcrypt.service')
 
 const AuthController = () => {
-  const register = async (req, res) => {
-    const { email, password, password2 } = req.body
+  const spotifyLogin = async (req, res, next) => {
+    let searchedUser
+    const {
+      spotifyUser: { id: spotifyId },
+      spotifyAccessToken,
+      spotifyRefreshToken,
+    } = res.locals
+    const { redis } = req
 
-    if (password === password2) {
-      try {
-        const user = await User.create({
-          email,
-          password,
-        })
-        const token = authService().issue({ id: user.id })
-
-        return res.status(200).json({ token, user })
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.log(err)
-        return res.status(500).json({ msg: 'Internal server error' })
-      }
+    try {
+      searchedUser = await User.findOne({ where: { spotifyId } })
+    } catch (error) {
+      next(error)
     }
 
-    return res.status(400).json({ msg: "Bad Request: Passwords don't match" })
-  }
-
-  const login = async (req, res) => {
-    const { email, password } = req.body
-
-    if (email && password) {
-      try {
-        const user = await User.findOne({
-          where: {
-            email,
-          },
-        })
-
-        if (!user) {
-          return res.status(400).json({ msg: 'Bad Request: User not found' })
-        }
-
-        if (bcryptService().comparePassword(password, user.password)) {
-          const token = authService().issue({ id: user.id })
-
-          return res.status(200).json({ token, user })
-        }
-
-        return res.status(401).json({ msg: 'Unauthorized' })
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.log(err)
-        return res.status(500).json({ msg: 'Internal server error' })
-      }
+    if (searchedUser) {
+      redis.set(`user:${searchedUser.id}`, spotifyRefreshToken)
+      const applicationAccessToken = authService().issue({
+        id: searchedUser.id,
+      })
+      return res.send({
+        spotifyAccessToken,
+        applicationAccessToken,
+        user: searchedUser,
+      })
     }
 
-    return res
-      .status(400)
-      .json({ msg: "Bad Request: Email and password don't match" })
+    return res.send({ error: 'No user found' }).status(400)
   }
+
+  const spotifySignup = async (req, res, next) => {
+    let searchedUser, createdUser
+    const {
+      spotifyUser: { id: spotifyId, email },
+      spotifyAccessToken,
+      spotifyRefreshToken,
+    } = res.locals
+    const { redis } = req
+
+    try {
+      searchedUser = await User.findOne({ where: { spotifyId } })
+    } catch (error) {
+      next(error)
+    }
+
+    if (searchedUser) {
+      return res.send({ error: 'User already exists' }).status(400)
+    }
+
+    try {
+      createdUser = await User.create({
+        email,
+        spotifyId,
+        password: generatePassword(),
+      })
+    } catch (error) {
+      next(error)
+    }
+
+    redis.set(`user:${createdUser.id}`, spotifyRefreshToken)
+    const applicationAccessToken = authService().issue({ id: createdUser.id })
+    return res.send({
+      spotifyAccessToken,
+      applicationAccessToken,
+      user: createdUser,
+    })
+  }
+
+  const spotifyConnect = async (req, res, next) => {
+    let searchedUser
+    const {
+      spotifyUser: { id: spotifyId },
+      spotifyAccessToken,
+      spotifyRefreshToken,
+    } = res.locals
+    console.log(spotifyId, spotifyAccessToken, spotifyRefreshToken)
+    const { redis, apolloContext } = req
+    const userId = get(apolloContext, 'user.id')
+
+    try {
+      searchedUser = await User.findByPk(userId)
+    } catch (error) {
+      next(error)
+    }
+
+    if (searchedUser) {
+      searchedUser.spotifyId = spotifyId
+      try {
+        await searchedUser.save()
+      } catch (error) {
+        return next(error)
+      }
+      redis.set(`user:${searchedUser.id}`, spotifyRefreshToken)
+      const applicationAccessToken = authService().issue({
+        id: searchedUser.id,
+      })
+      return res.send({
+        spotifyAccessToken,
+        applicationAccessToken,
+        user: searchedUser,
+      })
+    }
+
+    return res.send({ error: 'No user found' }).status(400)
+  }
+
+  const spotifyRefresh = async (req, res, next) => {
+    const refreshUrl = 'https://accounts.spotify.com/api/token'
+    const {
+      redis,
+      body: { spotifyAccessToken, userId },
+    } = req
+    let refresh_token
+    try {
+      refresh_token = await redis.get(`user:${userId}`)
+    } catch (error) {
+      return next(error)
+    }
+    if (!spotifyAccessToken) {
+      return res.status(400).send({ error: 'Must send spotify access token' })
+    }
+
+    const options = {
+      url: refreshUrl,
+      method: 'POST',
+      headers: {
+        Authorization:
+          'Basic ' +
+          Buffer.from(
+            process.env.SPOTIFY_CLIENT_ID +
+              ':' +
+              process.env.SPOTIFY_CLIENT_SECRET
+          ).toString('base64'),
+      },
+      form: {
+        grant_type: 'refresh_token',
+        refresh_token: refresh_token,
+      },
+      json: true,
+    }
+
+    let refreshData
+    try {
+      refreshData = await rp(options)
+    } catch (error) {
+      return next(error)
+    }
+
+    const applicationAccessToken = authService().issue({ id: userId })
+    return res.send({
+      spotifyAccessToken: refreshData.access_token,
+      applicationAccessToken,
+    })
+  }
+
+  const generatePassword = () =>
+    generator.generate({
+      length: 10,
+      numbers: true,
+      symbols: true,
+    })
 
   const validate = (req, res) => {
     const { token } = req.body
@@ -72,9 +180,11 @@ const AuthController = () => {
   }
 
   return {
-    register,
-    login,
     validate,
+    spotifyLogin,
+    spotifyConnect,
+    spotifySignup,
+    spotifyRefresh,
   }
 }
 

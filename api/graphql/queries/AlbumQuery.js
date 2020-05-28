@@ -1,8 +1,9 @@
 const {
   GraphQLID,
   GraphQLString,
-  GraphQLBoolean,
+  GraphQLInt,
   GraphQLList,
+  GraphQLBoolean,
 } = require('graphql')
 const { GraphQLJSONObject } = require('graphql-type-json')
 
@@ -13,28 +14,56 @@ const albumQuery = {
   type: new GraphQLList(AlbumType),
   args: {
     id: {
-      name: 'id',
       type: GraphQLID,
-    },
-    isFeatured: {
-      name: 'isFeatured',
-      type: GraphQLBoolean,
+      name: 'id',
     },
     spotifyId: {
-      name: 'spotifyId',
       type: GraphQLString,
+      name: 'spotifyId',
     },
-    spotifyData: {
-      name: 'spotifyData',
-      type: GraphQLJSONObject,
+    artists: {
+      type: new GraphQLList(GraphQLJSONObject),
+      name: 'artists',
+    },
+    images: {
+      type: new GraphQLList(GraphQLJSONObject),
+      name: 'images',
+    },
+    name: {
+      type: GraphQLString,
+      name: 'name',
+    },
+    releaseDate: {
+      type: GraphQLString,
+      name: 'releaseDate',
+    },
+    releaseDatePrecision: {
+      type: GraphQLString,
+      name: 'releaseDatePrecision',
+    },
+    totalTracks: {
+      type: GraphQLInt,
+      name: 'totalTracks',
+    },
+    durationInMs: {
+      type: GraphQLInt,
+      name: 'durationInMs',
+    },
+    tracks: {
+      type: new GraphQLList(GraphQLString),
+      name: 'tracks',
+    },
+    active: {
+      type: GraphQLBoolean,
+      name: 'active',
     },
     createdAt: {
-      name: 'createdAt',
       type: GraphQLString,
+      name: 'createdAt',
     },
     updatedAt: {
-      name: 'updatedAt',
       type: GraphQLString,
+      name: 'updatedAt',
     },
   },
   resolve: (album, args) => Album.findAll({ where: args }),

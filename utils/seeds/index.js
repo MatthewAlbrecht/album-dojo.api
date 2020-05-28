@@ -8,6 +8,9 @@ module.exports.commonFields = () => ({
 
 module.exports.IDS = {
   USER: uuid(),
+  ADMIN: uuid(),
+  SUPER_ADMIN: uuid(),
+  JESUS: uuid(),
   ALBUMS: [uuid(), uuid(), uuid(), uuid()],
   USER_ALBUMS: [uuid(), uuid(), uuid(), uuid()],
   LIST_USER_ALBUMS: [uuid(), uuid(), uuid(), uuid()],

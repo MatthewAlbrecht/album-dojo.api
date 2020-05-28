@@ -14,47 +14,47 @@ const { UserAction } = require('./UserAction')
 
 User.belongsToMany(Achievement, {
   through: UserAchievement,
-  foreignKey: { name: 'userId' },
+  foreignKey: { name: 'userId', allowNull: false },
 })
-User.hasMany(List, { foreignKey: { name: 'userId' } })
+User.hasMany(List, { foreignKey: { name: 'userId', allowNull: false } })
 User.belongsToMany(Album, {
   through: UserAlbum,
-  foreignKey: { name: 'userId' },
+  foreignKey: { name: 'userId', allowNull: false },
 })
 User.belongsToMany(Action, {
   through: UserAction,
-  foreignKey: { name: 'userId' },
+  foreignKey: { name: 'userId', allowNull: false },
 })
-User.belongsTo(Role, { foreignKey: 'role' })
+User.belongsTo(Role, { foreignKey: { name: 'role', allowNull: false } })
 
 Role.belongsToMany(Permission, {
   through: RolePermission,
-  foreignKey: { name: 'roleName' },
+  foreignKey: { name: 'roleName', allowNull: false },
 })
 
 Action.belongsToMany(User, {
   through: UserAction,
-  foreignKey: { name: 'actionCode' },
+  foreignKey: { name: 'actionCode', allowNull: false },
 })
 Achievement.belongsToMany(User, {
   through: UserAchievement,
-  foreignKey: { name: 'achievementCode' },
+  foreignKey: { name: 'achievementCode', allowNull: false },
 })
 Album.belongsToMany(User, {
   through: UserAlbum,
-  foreignKey: { name: 'albumId' },
+  foreignKey: { name: 'albumId', allowNull: false },
 })
 List.belongsToMany(UserAlbum, {
   through: ListUserAlbum,
-  foreignKey: { name: 'listId' },
+  foreignKey: { name: 'listId', allowNull: false },
 })
 Permission.belongsToMany(Role, {
   through: RolePermission,
-  foreignKey: { name: 'permissionName' },
+  foreignKey: { name: 'permissionName', allowNull: false },
 })
 UserAlbum.belongsToMany(List, {
   through: ListUserAlbum,
-  foreignKey: { name: 'userAlbumId' },
+  foreignKey: { name: 'userAlbumId', allowNull: false },
 })
 
 module.exports = {

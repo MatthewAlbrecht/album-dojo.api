@@ -8,7 +8,8 @@ module.exports = {
       albumData.map((album, index) => ({
         id: IDS.ALBUMS[index],
         ...album,
-        spotifyData: JSON.stringify(album.spotifyData),
+        artists: JSON.stringify(album.artists),
+        images: JSON.stringify(album.images),
         updatedAt: new Date(),
         createdAt: new Date(),
       })),

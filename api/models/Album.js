@@ -15,12 +15,35 @@ const Album = sequelize.define(
     },
     spotifyId: {
       type: Sequelize.STRING,
+      unique: true,
     },
-    isFeatured: {
-      type: Sequelize.BOOLEAN,
-    },
-    spotifyData: {
+    artists: {
       type: Sequelize.JSONB,
+    },
+    images: {
+      type: Sequelize.JSONB,
+    },
+    name: {
+      type: Sequelize.STRING,
+    },
+    releaseDate: {
+      type: Sequelize.STRING,
+    },
+    releaseDatePrecision: {
+      type: Sequelize.STRING,
+    },
+    totalTracks: {
+      type: Sequelize.INTEGER,
+    },
+    durationInMs: {
+      type: Sequelize.INTEGER,
+    },
+    tracks: {
+      type: Sequelize.ARRAY(Sequelize.STRING),
+    },
+    active: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
     },
   },
   { tableName }

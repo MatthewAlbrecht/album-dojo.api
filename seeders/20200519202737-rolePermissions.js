@@ -1,16 +1,15 @@
 const { IDS } = require('../utils/seeds')
-const permissionData = require('../utils/seeds/permissionData.json')
-const roleData = require('../utils/seeds/roleData.json')
+const rolePermissionData = require('../utils/seeds/rolePermissionData.json')
 
 module.exports = {
   up: async queryInterface => {
     const rolePermissionObjects = []
-    permissionData.forEach(permission => {
-      roleData.forEach(role => {
+    rolePermissionData.forEach(role => {
+      role.permissions.forEach(permission => {
         rolePermissionObjects.push({
           id: IDS.RANDOM(),
-          permissionName: permission.name,
-          roleName: role.name,
+          permissionName: permission,
+          roleName: role.roleName,
           updatedAt: new Date(),
           createdAt: new Date(),
         })

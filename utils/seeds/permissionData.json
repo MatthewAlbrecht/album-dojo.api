@@ -10,5 +10,9 @@
   {
     "name": "updateUser",
     "description": "Update an existing user (not themselves)"
+  },
+  {
+    "name": "loginAdmin",
+    "description": "This user is allowed to login to the admin ui"
   }
 ]

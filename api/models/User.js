@@ -48,6 +48,7 @@ const User = sequelize.define(
     spotifyId: {
       type: Sequelize.STRING,
       allowNull: true,
+      unique: true,
       validate: {
         isAlphanumeric: true,
       },
