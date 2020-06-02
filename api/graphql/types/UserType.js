@@ -48,7 +48,7 @@ const UserType = new GraphQLObjectType({
     },
     points: {
       type: GraphQLJSONObject,
-      resolve: async (user, args, context) => {
+      resolve: async user => {
         const userActions = await user.getActions()
         const totalUserPoints = userActions.reduce(
           (total, action) => total + action.points,

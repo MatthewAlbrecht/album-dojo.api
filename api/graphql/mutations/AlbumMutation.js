@@ -1,6 +1,7 @@
 const merge = require('lodash.merge')
 const rp = require('request-promise')
 const { GraphQLList } = require('graphql')
+const { Op } = require('sequelize')
 const {
   getAlbumUrl,
   getPlaylistTracksUrl,
@@ -95,7 +96,7 @@ const createAlbumsByPlaylist = {
     },
   },
   resolve: async (_, { album }) => {
-    console.log(album)
+    console.log({ album })
     const spotifyPlaylistId = getIdFromURI(album.spotifyPlaylistId)
     const requestOptions = {
       url: getPlaylistTracksUrl(spotifyPlaylistId),
@@ -112,7 +113,7 @@ const createAlbumsByPlaylist = {
       requestedTracks = await rp(requestOptions)
     } catch (error) {
       console.log(error)
-      throw new Error('Error retrieving playlist.')
+      throw new Error('Error retrieving playlist tracks.')
     }
 
     const { total } = requestedTracks
@@ -138,17 +139,42 @@ const createAlbumsByPlaylist = {
     remainingTracks.unshift(requestedTracks)
 
     // getting all of the track's album's ids
-    let validAlbums = remainingTracks
-      .map(set => set.items)
-      .flat(1)
-      .map(item => item.track.album)
-      .filter(item => item.total_tracks > 2)
-      .map(album => album.id)
-      .reduce(
-        (unique, id) => (unique.includes(id) ? unique : [...unique, id]),
-        []
-      )
+    let validAlbums
+    try {
+      validAlbums = remainingTracks
+        .map(set => set.items)
+        .flat(1)
+        .filter(item => item.track)
+        .map(item => item.track.album)
+        .filter(item => item.total_tracks > 2)
+        .map(album => album.id)
+        .reduce(
+          (unique, id) => (unique.includes(id) ? unique : [...unique, id]),
+          []
+        )
+    } catch (error) {
+      console.log('error ==='.toUpperCase(), error)
+      throw new Error('Error getting album ids')
+    }
+    // get ids of existing albums in our database
+    let existingIds = await Album.findAll({
+      attributes: ['spotifyId'],
+      where: {
+        spotifyId: {
+          [Op.in]: validAlbums,
+        },
+      },
+    }).catch(error => {
+      console.log(error)
+      throw new Error('Error retrieving already existing albums.')
+    })
 
+    // filtering out all pre-existing album ids
+    existingIds = existingIds.map(existingId => existingId.spotifyId)
+    validAlbums = validAlbums.filter(id => !existingIds.includes(id))
+
+    // Grouping the ids into sections of 20 for spotify's
+    // get several albums endpoint
     let albumIdGroups = []
     while (validAlbums.length) {
       albumIdGroups.push(validAlbums.splice(0, 20).join(','))
@@ -160,6 +186,7 @@ const createAlbumsByPlaylist = {
       })
     )
 
+    // get all the requested albums from spotify
     let requestedAlbums
     try {
       requestedAlbums = await Promise.all(albumRequests)
@@ -168,11 +195,13 @@ const createAlbumsByPlaylist = {
       throw new Error('Error retrieving albums.')
     }
 
+    // normalize albums into structure for our database
     albums = requestedAlbums
       .map(item => item.albums)
       .flat(1)
       .map(normalizeSpotifyAlbumData)
 
+    // save all the albums to our database ignoring any duplicates
     let savedAlbums
     try {
       savedAlbums = await Album.bulkCreate(albums, { ignoreDuplicates: true })
@@ -185,16 +214,16 @@ const createAlbumsByPlaylist = {
     // It will return duplicated non-existant instances in place of the
     // instances that already exist in the db. I think it's an error
     // It doesn't happen iff ALL albums already exist???
-    let uniqueAlbums = savedAlbums
-      .map(album => album.id)
-      .reduce(
-        (unique, id) => (unique.includes(id) ? unique : [...unique, id]),
-        []
-      )
-      .map(id => {
-        return savedAlbums.find(album => id === album.id)
-      })
-    return uniqueAlbums
+    // let uniqueAlbums = savedAlbums
+    //   .map(album => album.id)
+    //   .reduce(
+    //     (unique, id) => (unique.includes(id) ? unique : [...unique, id]),
+    //     []
+    //   )
+    //   .map(id => {
+    //     return savedAlbums.find(album => id === album.id)
+    //   })
+    return savedAlbums
   },
 }
 

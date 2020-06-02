@@ -8,6 +8,29 @@ const {
 } = require('graphql')
 const { GraphQLJSONObject } = require('graphql-type-json')
 
+const AlbumConnection = new GraphQLObjectType({
+  name: 'Albums',
+  description: 'This represents a paginatable list of Albums',
+  fields: () => ({
+    totalCount: {
+      type: GraphQLInt,
+      resolve: connection => connection.totalCount,
+    },
+    cursor: {
+      type: GraphQLString,
+      resolve: connection => connection.cursor,
+    },
+    hasMore: {
+      type: GraphQLBoolean,
+      resolve: connection => connection.hasMore,
+    },
+    albums: {
+      type: new GraphQLList(AlbumType),
+      resolve: connection => connection.albums,
+    },
+  }),
+})
+
 const AlbumType = new GraphQLObjectType({
   name: 'Album',
   description: 'This represents an Album',
@@ -67,4 +90,4 @@ const AlbumType = new GraphQLObjectType({
   }),
 })
 
-module.exports = { AlbumType }
+module.exports = { AlbumType, AlbumConnection }
