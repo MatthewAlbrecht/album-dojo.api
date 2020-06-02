@@ -28,6 +28,9 @@ const AlbumInputType = type => {
         spotifyId: {
           type: GraphQLString,
         },
+        duplicateSpotifyIds: {
+          type: new GraphQLList(GraphQLJSONObject),
+        },
         artists: {
           type: new GraphQLList(GraphQLJSONObject),
         },
@@ -35,9 +38,6 @@ const AlbumInputType = type => {
           type: new GraphQLList(GraphQLJSONObject),
         },
         name: {
-          type: GraphQLString,
-        },
-        releaseDate: {
           type: GraphQLString,
         },
         releaseDatePrecision: {
@@ -62,6 +62,9 @@ const AlbumInputType = type => {
         spotifyId: {
           type: GraphQLString,
         },
+        duplicateSpotifyIds: {
+          type: new GraphQLList(GraphQLJSONObject),
+        },
         artists: {
           type: new GraphQLList(GraphQLJSONObject),
         },
@@ -72,9 +75,6 @@ const AlbumInputType = type => {
           type: GraphQLString,
         },
         releaseDate: {
-          type: GraphQLString,
-        },
-        releaseDatePrecision: {
           type: GraphQLString,
         },
         totalTracks: {

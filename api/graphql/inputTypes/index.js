@@ -1,6 +1,8 @@
 const { AchievementInputType } = require('./AchievementInputType')
 const { ActionInputType } = require('./ActionInputType')
+const { AlbumGenreInputType } = require('./AlbumGenreInputType')
 const { AlbumInputType } = require('./AlbumInputType')
+const { GenreInputType } = require('./GenreInputType')
 const { ListInputType } = require('./ListInputType')
 const { ListUserAlbumInputType } = require('./ListUserAlbumInputType')
 const { PermissionInputType } = require('./PermissionInputType')
@@ -14,7 +16,9 @@ const { UserInputType } = require('./UserInputType')
 module.exports = {
   AchievementInputType,
   ActionInputType,
+  AlbumGenreInputType,
   AlbumInputType,
+  GenreInputType,
   ListInputType,
   ListUserAlbumInputType,
   PermissionInputType,

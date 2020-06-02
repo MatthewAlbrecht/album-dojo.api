@@ -10,6 +10,7 @@ module.exports = {
         ...album,
         artists: JSON.stringify(album.artists),
         images: JSON.stringify(album.images),
+        releaseDate: new Date(album.releaseDate),
         updatedAt: new Date(),
         createdAt: new Date(),
       })),

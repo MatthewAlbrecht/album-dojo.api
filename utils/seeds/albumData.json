@@ -21,7 +21,6 @@
     ],
     "name": "Flower Boy",
     "releaseDate": "2017-7-15",
-    "releaseDatePrecision": "day",
     "totalTracks": 11,
     "durationInMs": 2476800,
     "tracks": ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"]
@@ -48,7 +47,6 @@
     ],
     "name": "IGOR",
     "releaseDate": "2019-4-11",
-    "releaseDatePrecision": "day",
     "totalTracks": 9,
     "durationInMs": 1976800,
     "tracks": ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"]
@@ -75,7 +73,6 @@
     ],
     "name": "Ye",
     "releaseDate": "2018-3-10",
-    "releaseDatePrecision": "day",
     "totalTracks": 7,
     "durationInMs": 1576800,
     "tracks": ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"]
@@ -102,7 +99,6 @@
     ],
     "name": "Bon Iver",
     "releaseDate": "2011-2-2",
-    "releaseDatePrecision": "day",
     "totalTracks": 10,
     "durationInMs": 2076800,
     "tracks": ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"]

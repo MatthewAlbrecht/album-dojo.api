@@ -7,29 +7,7 @@ const {
   GraphQLID,
 } = require('graphql')
 const { GraphQLJSONObject } = require('graphql-type-json')
-
-const AlbumConnection = new GraphQLObjectType({
-  name: 'Albums',
-  description: 'This represents a paginatable list of Albums',
-  fields: () => ({
-    totalCount: {
-      type: GraphQLInt,
-      resolve: connection => connection.totalCount,
-    },
-    cursor: {
-      type: GraphQLString,
-      resolve: connection => connection.cursor,
-    },
-    hasMore: {
-      type: GraphQLBoolean,
-      resolve: connection => connection.hasMore,
-    },
-    albums: {
-      type: new GraphQLList(AlbumType),
-      resolve: connection => connection.albums,
-    },
-  }),
-})
+const { GenreType } = require('./GenreType')
 
 const AlbumType = new GraphQLObjectType({
   name: 'Album',
@@ -59,10 +37,6 @@ const AlbumType = new GraphQLObjectType({
       type: GraphQLString,
       resolve: album => album.releaseDate,
     },
-    releaseDatePrecision: {
-      type: GraphQLString,
-      resolve: album => album.releaseDatePrecision,
-    },
     totalTracks: {
       type: GraphQLInt,
       resolve: album => album.totalTracks,
@@ -79,6 +53,14 @@ const AlbumType = new GraphQLObjectType({
       type: GraphQLBoolean,
       resolve: album => album.active,
     },
+    genres: {
+      type: new GraphQLList(GenreType),
+      resolve: async album => album.getGenres(),
+    },
+    duplicateSpotifyIds: {
+      type: new GraphQLList(GraphQLString),
+      resolve: album => album.duplicateSpotifyIds,
+    },
     createdAt: {
       type: GraphQLString,
       resolve: album => album.createdAt,
@@ -90,4 +72,4 @@ const AlbumType = new GraphQLObjectType({
   }),
 })
 
-module.exports = { AlbumType, AlbumConnection }
+module.exports = { AlbumType }

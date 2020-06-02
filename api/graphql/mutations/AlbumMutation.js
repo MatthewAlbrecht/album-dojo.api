@@ -244,7 +244,6 @@ const updateAlbum = {
     }
 
     const updatedAlbum = merge(foundAlbum, {
-      spotifyId,
       ...rest,
     })
 

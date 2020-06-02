@@ -1,7 +1,9 @@
 const { User } = require('./User')
 const { Achievement } = require('./Achievement')
 const { Album } = require('./Album')
+const { AlbumGenre } = require('./AlbumGenre')
 const { Action } = require('./Action')
+const { Genre } = require('./Genre')
 const { Level } = require('./Level')
 const { List } = require('./List')
 const { Role } = require('./Role')
@@ -44,6 +46,15 @@ Album.belongsToMany(User, {
   through: UserAlbum,
   foreignKey: { name: 'albumId', allowNull: false },
 })
+Album.belongsToMany(Genre, {
+  through: AlbumGenre,
+  foreignKey: { name: 'albumId', allowNull: false },
+})
+Genre.belongsToMany(Album, {
+  through: AlbumGenre,
+  foreignKey: { name: 'genreId', allowNull: false },
+})
+Genre.belongsTo(Genre, { as: 'parentGenre', foreignKey: 'parentGenreId' })
 List.belongsToMany(UserAlbum, {
   through: ListUserAlbum,
   foreignKey: { name: 'listId', allowNull: false },
@@ -60,7 +71,9 @@ UserAlbum.belongsToMany(List, {
 module.exports = {
   Achievement,
   Album,
+  AlbumGenre,
   Action,
+  Genre,
   Level,
   List,
   ListUserAlbum,

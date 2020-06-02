@@ -4,8 +4,7 @@ module.exports.normalizeSpotifyAlbumData = album => {
     id: spotifyId,
     images,
     name,
-    release_date: releaseDate,
-    release_date_precision: releaseDatePrecision,
+    release_date,
     total_tracks: totalTracks,
     tracks,
   } = album
@@ -20,6 +19,12 @@ module.exports.normalizeSpotifyAlbumData = album => {
     0
   )
 
+  let releaseDate = new Date(release_date)
+  releaseDate = releaseDate.setDate(releaseDate.getDate() + 1)
+  if (release_date === '0000') {
+    releaseDate = null
+  }
+
   tracks = tracks.items.map(({ name }) => name)
 
   return {
@@ -28,7 +33,6 @@ module.exports.normalizeSpotifyAlbumData = album => {
     images,
     name,
     releaseDate,
-    releaseDatePrecision,
     totalTracks,
     durationInMs,
     tracks,

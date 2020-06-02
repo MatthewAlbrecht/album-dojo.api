@@ -5,13 +5,13 @@ const {
   GraphQLList,
   GraphQLBoolean,
   GraphQLEnumType,
-  GraphQLObjectType,
 } = require('graphql')
 const { Op } = require('sequelize')
 const sequelize = require('sequelize')
 const { GraphQLJSONObject } = require('graphql-type-json')
 
-const { AlbumConnection } = require('../types')
+const { SortOrderEnumType } = require('../enums')
+const { AlbumConnection } = require('../connections')
 const { Album } = require('../../models')
 
 const albumQuery = {
@@ -28,7 +28,7 @@ const albumQuery = {
     },
     sort: {
       type: new GraphQLEnumType({
-        name: 'sort',
+        name: 'albumSort',
         values: {
           name: { value: 'name' },
           releaseDate: { value: 'releaseDate' },
@@ -40,13 +40,7 @@ const albumQuery = {
       }),
     },
     sortOrder: {
-      type: new GraphQLEnumType({
-        name: 'sortOrder',
-        values: {
-          ASC: { value: 'ASC' },
-          DESC: { value: 'DESC' },
-        },
-      }),
+      type: SortOrderEnumType,
     },
     id: {
       type: GraphQLID,
@@ -55,6 +49,10 @@ const albumQuery = {
     spotifyId: {
       type: GraphQLString,
       name: 'spotifyId',
+    },
+    duplicateSpotifyIds: {
+      type: new GraphQLList(GraphQLString),
+      name: 'duplicateSpotifyIds',
     },
     artists: {
       type: new GraphQLList(GraphQLJSONObject),
@@ -71,10 +69,6 @@ const albumQuery = {
     releaseDate: {
       type: GraphQLString,
       name: 'releaseDate',
-    },
-    releaseDatePrecision: {
-      type: GraphQLString,
-      name: 'releaseDatePrecision',
     },
     totalTracks: {
       type: GraphQLInt,
@@ -105,6 +99,21 @@ const albumQuery = {
     const query = buildPaginatedQuery(args, {
       integerSorts: ['durationInMs', 'totalTracks'],
       dateSorts: ['createdAt', 'updatedAt'],
+      searchTermStatement: [
+        {
+          name: {
+            [Op.iLike]: `%${args.searchTerm}%`,
+          },
+        },
+        {
+          spotifyId: {
+            [Op.iLike]: `%${args.searchTerm}%`,
+          },
+        },
+        sequelize.where(sequelize.cast(sequelize.col('artists'), 'text'), {
+          [Op.iLike]: `%${args.searchTerm}%`,
+        }),
+      ],
     })
 
     const albums = await Album.findAll(query).catch(error => {
@@ -131,62 +140,3 @@ const albumQuery = {
 }
 
 module.exports = { albumQuery }
-
-const buildPaginatedQuery = (
-  { pageSize = 20, after, sort, sortOrder, searchTerm, ...args },
-  { integerSorts, dateSorts }
-) => {
-  let query = {
-    limit: pageSize,
-    order: [[sort || 'createdAt', sortOrder || 'DESC']],
-    where: args,
-  }
-
-  const querySort = query.order[0][0]
-  const isAscending = query.order[0][1] === 'ASC'
-
-  if (after) {
-    // TODO: Account for args
-    let cursor = after
-    if (integerSorts.includes(querySort)) {
-      cursor = +cursor
-    } else if (dateSorts.includes(querySort)) {
-      console.log(
-        'cursor, new Date(cursor) ==='.toUpperCase(),
-        cursor,
-        new Date(+cursor)
-      )
-      cursor = new Date(+cursor)
-    }
-    query.where[sort] = {
-      [isAscending ? Op.gte : Op.lte]: cursor,
-    }
-  }
-  if (searchTerm) {
-    query.where[Op.or] = [
-      {
-        name: {
-          [Op.iLike]: `%${searchTerm}%`,
-        },
-      },
-      {
-        spotifyId: {
-          [Op.iLike]: `%${searchTerm}%`,
-        },
-      },
-      sequelize.where(sequelize.cast(sequelize.col('artists'), 'text'), {
-        [Op.iLike]: `%${searchTerm}%`,
-      }),
-    ]
-    // artists: {
-    //   [Op.contains]: [
-    //     {
-    //       // name: { [Op.iLike]: `%${searchTerm}%` },
-    //       name: `${searchTerm}`,
-    //     },
-    //   ],
-    // },
-  }
-  console.log('query ==='.toUpperCase(), query)
-  return query
-}

@@ -27,10 +27,7 @@ const Album = sequelize.define(
       type: Sequelize.STRING,
     },
     releaseDate: {
-      type: Sequelize.STRING,
-    },
-    releaseDatePrecision: {
-      type: Sequelize.STRING,
+      type: Sequelize.DATEONLY,
     },
     totalTracks: {
       type: Sequelize.INTEGER,
@@ -44,6 +41,9 @@ const Album = sequelize.define(
     active: {
       type: Sequelize.BOOLEAN,
       defaultValue: true,
+    },
+    duplicateSpotifyIds: {
+      type: Sequelize.ARRAY(Sequelize.STRING),
     },
   },
   { tableName }
