@@ -74,7 +74,7 @@ const genreQuery = {
     })
 
     if (genres && typeof totalCount !== undefined) {
-      const cursor = genres.slice(-1)[0][args.sort]
+      const cursor = genres.length && genres.slice(-1)[0][args.sort]
       const hasMore = totalCount > (args.pageSize || 20)
       return {
         hasMore,

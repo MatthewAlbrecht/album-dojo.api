@@ -55,6 +55,11 @@ Genre.belongsToMany(Album, {
   foreignKey: { name: 'genreId', allowNull: false },
 })
 Genre.belongsTo(Genre, { as: 'parentGenre', foreignKey: 'parentGenreId' })
+Album.belongsTo(Album, {
+  as: 'duplicate',
+  foreignKey: 'duplicateOfId',
+  sourceKey: 'spotifyId',
+})
 List.belongsToMany(UserAlbum, {
   through: ListUserAlbum,
   foreignKey: { name: 'listId', allowNull: false },

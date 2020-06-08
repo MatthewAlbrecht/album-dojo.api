@@ -33,6 +33,9 @@ const ActionInputType = type => {
         points: {
           type: GraphQLInt,
         },
+        achievementCode: {
+          type: GraphQLString,
+        },
       }
       break
     case 'create':
@@ -54,6 +57,9 @@ const ActionInputType = type => {
         },
         points: {
           type: GraphQLInt,
+        },
+        achievementCode: {
+          type: GraphQLString,
         },
       }
       break

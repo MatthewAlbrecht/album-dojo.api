@@ -57,9 +57,17 @@ const AlbumType = new GraphQLObjectType({
       type: new GraphQLList(GenreType),
       resolve: async album => album.getGenres(),
     },
-    duplicateSpotifyIds: {
-      type: new GraphQLList(GraphQLString),
-      resolve: album => album.duplicateSpotifyIds,
+    duplicateOfId: {
+      type: GraphQLString,
+      resolve: album => album.duplicateOfId,
+    },
+    duplicateOf: {
+      type: AlbumType,
+      resolve: album => album.getDuplicate(),
+    },
+    duplicates: {
+      type: AlbumType,
+      resolve: album => album.getDuplicates(),
     },
     createdAt: {
       type: GraphQLString,

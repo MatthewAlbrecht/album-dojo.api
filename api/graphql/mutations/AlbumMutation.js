@@ -8,10 +8,10 @@ const {
   getIdFromURI,
   getSeveralAlbumsUrl,
 } = require('../../../utils/spotify')
-const { ALBUM_TYPE } = require('../../../utils/constants')
+
 const { normalizeSpotifyAlbumData } = require('../../../normalizers')
 const { AlbumType } = require('../types')
-const { Album } = require('../../models')
+const { Album, Genre } = require('../../models')
 const { AlbumInputType } = require('../inputTypes')
 
 const createAlbum = {
@@ -236,11 +236,53 @@ const updateAlbum = {
       type: AlbumInputType('update'),
     },
   },
-  resolve: async (_, { id, ...rest }) => {
+  resolve: async (_, { album: { id, genres, duplicates, ...rest } }) => {
     const foundAlbum = await Album.findByPk(id)
 
     if (!foundAlbum) {
       throw new Error(`Album with id: ${id} not found!`)
+    }
+
+    if (genres) {
+      const genreInstances = await Genre.findAll({
+        where: {
+          id: genres,
+        },
+      }).catch(error => {
+        console.log('error ==='.toUpperCase(), error)
+        throw new Error('error fetching genres for album update')
+      })
+
+      if (genreInstances) {
+        await foundAlbum.setGenres(genreInstances).catch(error => {
+          console.log('error ==='.toUpperCase(), error)
+          throw new Error('error setting genres on album')
+        })
+      }
+    }
+
+    if (duplicates) {
+      const duplicateInstances = await Album.findAll({
+        where: { id: duplicates },
+      }).catch(error => {
+        console.log('error ==='.toUpperCase(), error)
+        throw new Error('error fetching duplicates')
+      })
+      console.log('duplicates ==='.toUpperCase(), duplicates)
+      if (duplicateInstances) {
+        console.log('HERE')
+        console.log(
+          'JSON.stringify(duplicateInstances, null ,2) ==='.toUpperCase(),
+          JSON.stringify(duplicateInstances, null, 2)
+        )
+        for (let index = 0; index < duplicateInstances.length; index++) {
+          const duplicate = duplicateInstances[index]
+          await duplicate.setDuplicate(foundAlbum.spotifyId).catch(error => {
+            console.log('error ==='.toUpperCase(), error)
+            throw new Error('error setting duplicates of album')
+          })
+        }
+      }
     }
 
     const updatedAlbum = merge(foundAlbum, {

@@ -28,8 +28,11 @@ const AlbumInputType = type => {
         spotifyId: {
           type: GraphQLString,
         },
-        duplicateSpotifyIds: {
-          type: new GraphQLList(GraphQLJSONObject),
+        duplicateOfId: {
+          type: GraphQLString,
+        },
+        duplicates: {
+          type: new GraphQLList(GraphQLString),
         },
         artists: {
           type: new GraphQLList(GraphQLJSONObject),
@@ -55,6 +58,9 @@ const AlbumInputType = type => {
         active: {
           type: GraphQLBoolean,
         },
+        genres: {
+          type: new GraphQLList(GraphQLID),
+        },
       }
       break
     case 'create':
@@ -62,8 +68,8 @@ const AlbumInputType = type => {
         spotifyId: {
           type: GraphQLString,
         },
-        duplicateSpotifyIds: {
-          type: new GraphQLList(GraphQLJSONObject),
+        duplicateOfId: {
+          type: GraphQLString,
         },
         artists: {
           type: new GraphQLList(GraphQLJSONObject),

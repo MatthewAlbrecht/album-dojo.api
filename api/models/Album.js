@@ -42,9 +42,6 @@ const Album = sequelize.define(
       type: Sequelize.BOOLEAN,
       defaultValue: true,
     },
-    duplicateSpotifyIds: {
-      type: Sequelize.ARRAY(Sequelize.STRING),
-    },
   },
   { tableName }
 )

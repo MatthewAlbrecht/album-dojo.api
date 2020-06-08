@@ -1,9 +1,19 @@
+const { AchievementConnection } = require('./AchievementConnection')
+const { ActionConnection } = require('./ActionConnection')
 const { AlbumConnection } = require('./AlbumConnection')
-const { GenreConnection } = require('./GenreConnection')
 const { AlbumGenreConnection } = require('./AlbumGenreConnection')
+const { GenreConnection } = require('./GenreConnection')
+const { PermissionConnection } = require('./PermissionConnection')
+const { RoleConnection } = require('./RoleConnection')
+const { UserConnection } = require('./UserConnection')
 
 module.exports = {
+  AchievementConnection,
+  ActionConnection,
   AlbumConnection,
-  GenreConnection,
   AlbumGenreConnection,
+  GenreConnection,
+  PermissionConnection,
+  RoleConnection,
+  UserConnection,
 }

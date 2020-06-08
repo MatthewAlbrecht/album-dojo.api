@@ -42,6 +42,14 @@ const albumQuery = {
     sortOrder: {
       type: SortOrderEnumType,
     },
+    showDuplicates: {
+      type: GraphQLBoolean,
+      name: 'showDuplicates',
+    },
+    showInactive: {
+      type: GraphQLBoolean,
+      name: 'showInactive',
+    },
     id: {
       type: GraphQLID,
       name: 'id',
@@ -49,10 +57,6 @@ const albumQuery = {
     spotifyId: {
       type: GraphQLString,
       name: 'spotifyId',
-    },
-    duplicateSpotifyIds: {
-      type: new GraphQLList(GraphQLString),
-      name: 'duplicateSpotifyIds',
     },
     artists: {
       type: new GraphQLList(GraphQLJSONObject),
@@ -78,6 +82,10 @@ const albumQuery = {
       type: GraphQLInt,
       name: 'durationInMs',
     },
+    duplicateOfId: {
+      type: GraphQLString,
+      name: 'duplicateOfId',
+    },
     tracks: {
       type: new GraphQLList(GraphQLString),
       name: 'tracks',
@@ -95,10 +103,10 @@ const albumQuery = {
       name: 'updatedAt',
     },
   },
-  resolve: async (album, args) => {
+  resolve: async (album, { showDuplicates, showInactive, ...args }) => {
     const query = buildPaginatedQuery(args, {
       integerSorts: ['durationInMs', 'totalTracks'],
-      dateSorts: ['createdAt', 'updatedAt'],
+      dateSorts: ['createdAt', 'updatedAt', 'releaseDate'],
       searchTermStatement: [
         {
           name: {
@@ -116,6 +124,14 @@ const albumQuery = {
       ],
     })
 
+    if (!showDuplicates) {
+      query.where.duplicateOfId = null
+    }
+
+    if (!showInactive) {
+      query.where.active = true
+    }
+
     const albums = await Album.findAll(query).catch(error => {
       console.log('error ==='.toUpperCase(), error)
       throw new Error('error querying albums')
@@ -127,7 +143,7 @@ const albumQuery = {
     })
 
     if (albums && typeof totalCount !== undefined) {
-      const cursor = albums.slice(-1)[0][args.sort]
+      const cursor = albums.length && albums.slice(-1)[0][args.sort]
       const hasMore = totalCount > (args.pageSize || 20)
       return {
         hasMore,

@@ -74,6 +74,10 @@ const UserType = new GraphQLObjectType({
       type: GraphQLString,
       resolve: user => user.token,
     },
+    spotifyId: {
+      type: GraphQLString,
+      resolve: user => user.spotifyId,
+    },
     createdAt: {
       type: GraphQLString,
       resolve: user => user.createdAt,

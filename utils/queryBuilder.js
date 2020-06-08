@@ -32,21 +32,7 @@ module.exports = buildPaginatedQuery = (
     }
   }
   if (searchTerm) {
-    query.where[Op.or] = [
-      {
-        name: {
-          [Op.iLike]: `%${searchTerm}%`,
-        },
-      },
-      {
-        spotifyId: {
-          [Op.iLike]: `%${searchTerm}%`,
-        },
-      },
-      sequelize.where(sequelize.cast(sequelize.col('artists'), 'text'), {
-        [Op.iLike]: `%${searchTerm}%`,
-      }),
-    ]
+    query.where[Op.or] = searchTermStatement
   }
   return query
 }
