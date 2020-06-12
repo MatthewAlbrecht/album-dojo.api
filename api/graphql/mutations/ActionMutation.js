@@ -46,9 +46,10 @@ const updateAction = {
       description: action.description,
       level: action.level,
       points: action.points,
+      achievementCode: action.achievementCode,
     })
 
-    return foundAction.update(updatedAction)
+    return updatedAction.save()
   },
 }
 

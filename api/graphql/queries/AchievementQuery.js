@@ -80,10 +80,7 @@ const achievementQuery = {
       console.log('error ==='.toUpperCase(), error)
       throw new Error('error counting achievements')
     })
-    console.log(
-      'achievements ==='.toUpperCase(),
-      JSON.stringify(achievements, null, 2)
-    )
+
     if (achievements && typeof totalCount !== undefined) {
       const cursor = achievements.length && achievements.slice(-1)[0][args.sort]
       const hasMore = totalCount > (args.pageSize || 20)

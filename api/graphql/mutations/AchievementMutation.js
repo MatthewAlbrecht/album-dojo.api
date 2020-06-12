@@ -48,7 +48,7 @@ const updateAchievement = {
       basePoints: achievement.basePoints,
     })
 
-    return foundAchievement.update(updatedAchievement)
+    return updatedAchievement.save()
   },
 }
 
