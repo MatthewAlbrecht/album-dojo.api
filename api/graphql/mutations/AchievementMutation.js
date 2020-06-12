@@ -34,7 +34,7 @@ const updateAchievement = {
       type: AchievementInputType('update'),
     },
   },
-  resolve: async (_, achievement) => {
+  resolve: async (_, { achievement }) => {
     const foundAchievement = await Achievement.findByPk(achievement.code)
 
     if (!foundAchievement) {

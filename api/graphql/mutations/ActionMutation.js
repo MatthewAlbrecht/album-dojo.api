@@ -34,7 +34,7 @@ const updateAction = {
       type: ActionInputType('update'),
     },
   },
-  resolve: async (_, action) => {
+  resolve: async (_, { action }) => {
     const foundAction = await Action.findByPk(action.code)
 
     if (!foundAction) {
@@ -43,7 +43,6 @@ const updateAction = {
 
     const updatedAction = merge(foundAction, {
       name: action.name,
-      code: action.code,
       description: action.description,
       level: action.level,
       points: action.points,

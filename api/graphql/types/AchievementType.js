@@ -1,4 +1,12 @@
-const { GraphQLObjectType, GraphQLString, GraphQLInt } = require('graphql')
+const {
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLString,
+  GraphQLInt,
+} = require('graphql')
+const { Op } = require('sequelize')
+
+const { Achievement, Action } = require('../../models')
 
 const AchievementType = new GraphQLObjectType({
   name: 'Achievement',
@@ -23,6 +31,26 @@ const AchievementType = new GraphQLObjectType({
     imageUrl: {
       type: GraphQLString,
       resolve: achievement => achievement.imageUrl,
+    },
+    relatedAchievements: {
+      type: new GraphQLList(AchievementType),
+      resolve: achievement =>
+        Achievement.findAll({
+          where: {
+            code: {
+              [Op.startsWith]: achievement.code.slice(0, 2),
+            },
+          },
+        }),
+    },
+    relatedAction: {
+      type: require('./ActionType').ActionType,
+      resolve: achievement =>
+        Action.findOne({
+          where: {
+            achievementCode: achievement.code,
+          },
+        }),
     },
     createdAt: {
       type: GraphQLString,
