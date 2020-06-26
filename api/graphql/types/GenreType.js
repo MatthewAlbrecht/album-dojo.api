@@ -8,6 +8,10 @@ const GenreType = new GraphQLObjectType({
       type: GraphQLID,
       resolve: genre => genre.id,
     },
+    parentGenreId: {
+      type: GraphQLID,
+      resolve: genre => genre.parentGenreId,
+    },
     parentGenre: {
       type: GenreType,
       resolve: genre => genre.getParentGenre(),

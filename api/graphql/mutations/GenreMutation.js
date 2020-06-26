@@ -32,19 +32,19 @@ const updateGenre = {
       type: GenreInputType('update'),
     },
   },
-  resolve: async (_, { id, name, parentGenreId }) => {
-    const foundGenre = await Genre.findByPk(id)
+  resolve: async (_, { genre }) => {
+    const foundGenre = await Genre.findByPk(genre.id)
 
     if (!foundGenre) {
-      throw new Error(`Genre with id: ${id} not found!`)
+      throw new Error(`Genre with id: ${genre.id} not found!`)
     }
 
     const updatedGenre = merge(foundGenre, {
-      name,
-      parentGenreId,
+      name: genre.name,
+      parentGenreId: genre.parentGenreId,
     })
 
-    return foundGenre.update(updatedGenre)
+    return updatedGenre.save()
   },
 }
 

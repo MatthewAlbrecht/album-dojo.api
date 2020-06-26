@@ -36,10 +36,18 @@ const updatePermission = {
     },
   },
   resolve: async (_, { permission }) => {
+    console.log('permission.id ==='.toUpperCase(), permission.id)
     const foundPermission = await Permission.findByPk(permission.id)
 
     if (!foundPermission) {
       throw new Error(`Permission with id: ${permission.id} not found!`)
+    }
+
+    if (permission.roles) {
+      await foundPermission.setRoles(roles).catch(error => {
+        console.log('error ==='.toUpperCase(), error)
+        throw new Error(`Error updating roles!`)
+      })
     }
 
     const updatedPermission = merge(foundPermission, {
@@ -47,7 +55,7 @@ const updatePermission = {
       description: permission.description,
     })
 
-    return foundPermission.update(updatedPermission)
+    return updatedPermission.save()
   },
 }
 

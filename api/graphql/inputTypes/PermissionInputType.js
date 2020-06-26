@@ -3,6 +3,7 @@ const {
   GraphQLNonNull,
   GraphQLString,
   GraphQLID,
+  GraphQLList,
 } = require('graphql')
 
 const PermissionInputType = type => {
@@ -26,6 +27,9 @@ const PermissionInputType = type => {
         },
         description: {
           type: GraphQLString,
+        },
+        roles: {
+          type: new GraphQLList(GraphQLID),
         },
       }
       break
